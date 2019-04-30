@@ -8,7 +8,7 @@ import { KalturaLiveStreamEntry } from "kaltura-ngx-client/api/types/KalturaLive
   styleUrls: ['basic-settings.component.scss']
 })
 export class BasicSettingsComponent implements OnInit {
-  public _currentEntry: KalturaLiveStreamEntry;
+  public _currentEntry: VidiunLiveStreamEntry;
 
   constructor(private _liveEntryService: LiveEntryService) { }
 

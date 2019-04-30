@@ -1,4 +1,4 @@
-@import '../../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/_variables.scss';
+@import '../../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/_variables.scss';
 
 .basic-settings {
   margin-top: 28px;
@@ -21,7 +21,7 @@
 
   input, textarea {
     border-radius: 3px;
-    background-color: $kGrayscale6;
+    background-color: $vGrayscale6;
     margin: 12px 0 0 0;
 
     font-size: 15px;
@@ -52,7 +52,7 @@
     &:focus {
       background: #FFFFFF;
       box-shadow: none;
-      border: solid 1px $kGrayscale4;
+      border: solid 1px $vGrayscale4;
     }
   }
 }

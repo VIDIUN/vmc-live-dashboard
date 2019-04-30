@@ -9,10 +9,10 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 4. Navigate to `http://localhost:4200/dev`
 
 ### ClientLib Setup
-1. Open folder 'kaltura-typescript-client-custom' in terminal.
+1. Open folder 'vidiun-typescript-client-custom' in terminal.
 2. Run npm link
 3. Open application root folder (where package.json exists).
-4. Run npm link kaltura-typescript-client
+4. Run npm link vidiun-typescript-client
 
 ### Build
 Run `ng build` to build the project. 
@@ -25,14 +25,14 @@ The build artifacts will be stored in the `dist/` directory. Use the `-prod` fla
 5. Zip the renamed folder.
 
 ## Deployment instructions
-### KMC Deployment
+### VMC Deployment
 
-1. Go to kmc-live-dashboard repository in GitHub.
+1. Go to vmc-live-dashboard repository in GitHub.
 2. Under `releases` locate the desired version you wish to deploy.
-3. Download the zip file do the following directory: `/opt/kaltura/apps/liveDashboard`.
-4. Unzip the file and make sure folder contains the bew version (e.g. /opt/kaltura/apps/liveDashboard/v0.1.20). 
+3. Download the zip file do the following directory: `/opt/vidiun/apps/liveDashboard`.
+4. Unzip the file and make sure folder contains the bew version (e.g. /opt/vidiun/apps/liveDashboard/v0.1.20). 
 
-Note: In order for KMC to run the new version it must match the liveDashboard version in the base.ini configuration file! 
+Note: In order for VMC to run the new version it must match the liveDashboard version in the base.ini configuration file! 
 
 ## Testing Section ##
 

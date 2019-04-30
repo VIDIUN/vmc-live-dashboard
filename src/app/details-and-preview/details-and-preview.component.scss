@@ -1,4 +1,4 @@
-@import '../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/_variables.scss';
+@import '../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/_variables.scss';
 
 .streamInfo {
   min-height: 480px;
@@ -88,15 +88,15 @@
       border: none;
       &.start {
         &:hover {
-          background: darken($kPrimary, 10%);
+          background: darken($vPrimary, 10%);
         }
         &:active {
           box-shadow: inset 0px 1px 3px 0 rgba(0, 0, 0, 0.50);
         }
         &:disabled {
-          color: $kGrayscale4;
+          color: $vGrayscale4;
           background: transparent;
-          border: 1px solid $kGrayscale4;
+          border: 1px solid $vGrayscale4;
           cursor: none;
           box-shadow: none;
         }
@@ -113,8 +113,8 @@
 
       &.stop {
         &:hover{
-          background: darken($kDandger, 10%);
-          border: 0px solid darken($kDandger, 10%);
+          background: darken($vDandger, 10%);
+          border: 0px solid darken($vDandger, 10%);
         }
         &:active:not(:disabled){
           box-shadow: inset 0px 1px 3px 0 rgba(0,0,0,0.50);
@@ -136,7 +136,7 @@
   }
 
   .details {
-    border-top: 1px solid $kGrayscale4;
+    border-top: 1px solid $vGrayscale4;
     //height: 70%;
     padding: 24px 16px;
 
@@ -147,7 +147,7 @@
       font-size: 20px;
       line-height: 24px;
       font-weight: 500;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
     .content {
       .row {
@@ -162,13 +162,13 @@
         .left {
           flex: 0 0 50%;
           max-width: 50%;
-          color: $kGrayscale3;
+          color: $vGrayscale3;
           font-weight: 400;
         }
         .right {
           flex: none;
           max-width: 50%;
-          color: $kGrayscale1;
+          color: $vGrayscale1;
         }
       }
     }

@@ -1,4 +1,4 @@
-@import '../../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/_variables.scss';
+@import '../../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/_variables.scss';
 
 .additional-settings {
   margin-top: 28px;
@@ -53,7 +53,7 @@
   .ui-radiobutton-label {
     margin-left: 34px;
     margin-top: -30px;
-    color: $kGrayscale1;
+    color: $vGrayscale1;
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.02em;
@@ -61,9 +61,9 @@
   }
 
   .ui-radiobutton-box.ui-state-active {
-    background-color: $kPrimary;
-    background: $kPrimary;
-    border: 1px solid $kPrimary;
+    background-color: $vPrimary;
+    background: $vPrimary;
+    border: 1px solid $vPrimary;
     color: #ffffff;
 
     .ui-radiobutton-icon {

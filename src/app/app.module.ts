@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from "ng2-translate";
-import { TooltipModule } from '@kaltura-ng/kaltura-ui';
+import { TooltipModule } from '@vidiun-ng/vidiun-ui';
 
 // PrimeNG
 import { TabMenuModule, TabViewModule, InputTextModule, InputTextareaModule, ButtonModule, DropdownModule, CheckboxModule, RadioButtonModule, GrowlModule, ConfirmDialogModule } from 'primeng/primeng';
@@ -30,7 +30,7 @@ import { AreaBlockerComponent } from "@kaltura-ng/kaltura-ui/area-blocker";
 import { StreamHealthNotificationsComponent } from './stream-info/stream-health-notifications/stream-health-notifications.component';
 import { FurtherInformationComponent } from './components/further-information/further-information.component';
 // TODO: Remove!!!
-import { KalturaPlayerComponent } from './player/player.component';
+import { VidiunPlayerComponent } from './player/player.component';
 
 // Pipes
 import { RecordingTypePipe } from './pipes/recording-type.pipe';
@@ -39,7 +39,7 @@ import { EntryTypePipe } from './pipes/entry-type.pipe';
 import { EntryBooleanConfigurationPipe } from './pipes/entry-boolean-configuration.pipe';
 import { EntryDynamicInformationPipe } from './pipes/entry-dynamic-information.pipe';
 import { TranscodingInfoPipe } from './pipes/transcoding-info.pipe';
-import { SafePipe } from "@kaltura-ng/kaltura-ui/safe.pipe";
+import { SafePipe } from "@vidiun-ng/vidiun-ui/safe.pipe";
 import { DurationPipe } from "./pipes/duration.pipe";
 import { LocaleTimePipe } from "./pipes/locale-time.pipe";
 import { SeverityToHealthPipe } from './pipes/severity-to-health.pipe';

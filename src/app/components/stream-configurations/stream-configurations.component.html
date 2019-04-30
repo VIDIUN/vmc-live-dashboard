@@ -1,4 +1,4 @@
-<div class="stream-configurations kOverrideFAIcons" [class.compact]="compactMode">
+<div class="stream-configurations vOverrideFAIcons" [class.compact]="compactMode">
   <div class="property">
     <label class="configuration-label" [class.colors_reverted]="colorsReverted">{{ 'STREAM_CONFIG.stream_status.tag' | translate }}</label>
     <div class="configuration-status">
@@ -11,7 +11,7 @@
   <div class="property">
     <div class="label-icon-duo">
       <label class="configuration-label" [class.colors_reverted]="colorsReverted">{{ 'STREAM_CONFIG.stream_health.tag' | translate }}</label>
-      <i class="kIconhelp_full bullet-grey" [kTooltip]="_streamHealthTooltip" [maxWidth]="400" [placement]="'bottom'" [escape]="false"></i>
+      <i class="vIconhelp_full bullet-grey" [vTooltip]="_streamHealthTooltip" [maxWidth]="400" [placement]="'bottom'" [escape]="false"></i>
     </div>
     <div class="configuration-status">
       <span class="bullet bullet-grey" [class.bullet-green]="((_streamSeverity | severityToHealth) === 'Good') && (_dynamicInformation.streamStatus.state !== 'Offline')"
@@ -33,8 +33,8 @@
   <div class="property">
     <div class="label-icon-duo">
       <label class="configuration-label" [class.colors_reverted]="colorsReverted">{{ 'STREAM_CONFIG.transcoding' | translate }}</label>
-      <i class="kIconerror infoIcon bullet-grey"
-         [kTooltip]="((_dynamicInformation.streamStatus.state !== 'Offline') && (_allStreams.primary.length || _allStreams.secondary.length)) ? (_allStreams | transcodingInfo: _dynamicInformation.streamStatus.serverType) : ''"
+      <i class="vIconerror infoIcon bullet-grey"
+         [vTooltip]="((_dynamicInformation.streamStatus.state !== 'Offline') && (_allStreams.primary.length || _allStreams.secondary.length)) ? (_allStreams | transcodingInfo: _dynamicInformation.streamStatus.serverType) : ''"
          [maxWidth]="175" [placement]="'bottom'"></i>
     </div>
     <div class="configuration-status">

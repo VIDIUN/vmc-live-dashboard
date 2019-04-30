@@ -50,7 +50,7 @@
     .not-broadcasting-container {
       height: 100%;
       min-height: 158px;
-      background-color: $kGrayscale6;
+      background-color: $vGrayscale6;
       border-radius: 4px;
       display: flex;
       flex-flow: column nowrap;
@@ -61,11 +61,11 @@
         margin: 0;
       }
       .firstRow {
-        color: $kGrayscale1;
+        color: $vGrayscale1;
         margin-bottom: 7px;
       }
       .secondRow {
-        color: $kGrayscale3;
+        color: $vGrayscale3;
       }
       .firstRow-reverted {
         color: #FFFFFF;
@@ -103,9 +103,9 @@
       }
 
       &.start-live-wait {
-        background: $kPrimary;
+        background: $vPrimary;
         animation: stripes-move 1s linear infinite;
-        background-image: repeating-linear-gradient(-60deg, $kPrimary, $kPrimary 16px, rgba(255,255,255,0.2) 16px, rgba(255,255,255,0.1) 36px);
+        background-image: repeating-linear-gradient(-60deg, $vPrimary, $vPrimary 16px, rgba(255,255,255,0.2) 16px, rgba(255,255,255,0.1) 36px);
         background-size: 200% 200%;
         cursor: not-allowed;
         opacity: 0.65;
@@ -125,9 +125,9 @@
       }
 
       &.stop-live-wait {
-        background: $kDandger;
+        background: $vDandger;
         animation: stripes-move 1s linear infinite;
-        background-image: repeating-linear-gradient(-60deg, $kDandger, $kDandger 16px, rgba(255,255,255,0.2) 16px, rgba(255,255,255,0.2) 36px);
+        background-image: repeating-linear-gradient(-60deg, $vDandger, $vDandger 16px, rgba(255,255,255,0.2) 16px, rgba(255,255,255,0.2) 36px);
         background-size: 200% 200%;
         cursor: not-allowed;
         opacity: 0.65;
@@ -195,7 +195,7 @@
     .ui-dialog-content.ui-widget-content {
       line-height: 24px;
       font-size: 15px;
-      color: $kGrayscale1;
+      color: $vGrayscale1;
     }
 
     .ui-dialog-footer {
@@ -214,11 +214,11 @@
 
         &.accept-button{
           color: #ffffff;
-          background: $kDandger;
-          border: 0px solid $kDandger;
+          background: $vDandger;
+          border: 0px solid $vDandger;
           &:hover {
-            background: darken($kDandger, 10%);
-            border: 0px solid darken($kDandger, 10%);
+            background: darken($vDandger, 10%);
+            border: 0px solid darken($vDandger, 10%);
           }
           &:active:not(:disabled){
             box-shadow: inset 0px 1px 3px 0 rgba(0,0,0,0.50);
@@ -226,13 +226,13 @@
         }
 
         &.reject-button {
-          color: $kGrayscale1;
+          color: $vGrayscale1;
           background: #ffffff;
-          border: 1px solid $kGrayscale4;
+          border: 1px solid $vGrayscale4;
           &:hover{
-            color: $kPrimary;
+            color: $vPrimary;
             background: #ffffff;
-            border: 1px solid $kGrayscale4;
+            border: 1px solid $vGrayscale4;
           }
           &:active:not(:disabled){
             box-shadow: inset 0px 1px 3px 0 rgba(0,0,0,0.50);

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { KalturaClient } from "kaltura-ngx-client";
+import { VidiunClient } from "vidiun-ngx-client";
 import { LiveDashboardConfiguration } from "./services/live-dashboard-configuration.service";
 import { Observable } from "rxjs/Observable";
 import { environment } from "../environments/environment";
-import { AppLocalization } from "@kaltura-ng/kaltura-common";
+import { AppLocalization } from "@vidiun-ng/vidiun-common";
 import { ApplicationMode } from "./types/live-dashboard.types";
 
 declare var window: any;
@@ -11,7 +11,7 @@ declare var window: any;
 @Injectable()
 export class BootstrapService {
 
-  constructor(private _kalturaClient: KalturaClient,
+  constructor(private _vidiunClient: VidiunClient,
               private _liveDashboardConfiguration: LiveDashboardConfiguration,
               private _appLocalization: AppLocalization) {
   }
@@ -20,30 +20,30 @@ export class BootstrapService {
     if (window && window.top) {
       this._liveDashboardConfiguration.player = {};
 
-      if (window.top.kmc && window.top.kmc.vars && window.top.kmc.vars.liveDashboard) {
+      if (window.top.vmc && window.top.vmc.vars && window.top.vmc.vars.liveDashboard) {
         this._liveDashboardConfiguration.mode =             ApplicationMode.Default;
-        this._liveDashboardConfiguration.ks =               window.top.kmc.vars.ks;
-        this._liveDashboardConfiguration.service_url =      window.top.kmc.vars.service_url;
-        this._liveDashboardConfiguration.entryId =          window.top.kmc.vars.liveDashboard.entryId;
+        this._liveDashboardConfiguration.vs =               window.top.vmc.vars.vs;
+        this._liveDashboardConfiguration.service_url =      window.top.vmc.vars.service_url;
+        this._liveDashboardConfiguration.entryId =          window.top.vmc.vars.liveDashboard.entryId;
         this._liveDashboardConfiguration.lang =             window.top.lang ? window.top.lang : 'en';
       }
       else if (window.top.webcast && window.top.webcast.vars && window.top.webcast.vars.liveDashboard) {
         this._liveDashboardConfiguration.mode =             window.top.webcast.vars.liveDashboard.mode === 'webcast' ? ApplicationMode.Webcast : ApplicationMode.Default;
-        this._liveDashboardConfiguration.ks =               window.top.webcast.vars.liveDashboard.ks;
+        this._liveDashboardConfiguration.vs =               window.top.webcast.vars.liveDashboard.vs;
         this._liveDashboardConfiguration.service_url =      window.top.webcast.vars.liveDashboard.service_url;
         this._liveDashboardConfiguration.entryId =          window.top.webcast.vars.liveDashboard.entryId;
         this._liveDashboardConfiguration.lang =             window.top.webcast.vars.liveDashboard.lang ? window.top.webcast.vars.liveDashboard.lang : 'en';
       }
     }
 
-    if (this._liveDashboardConfiguration.ks && this._liveDashboardConfiguration.service_url && this._liveDashboardConfiguration.entryId) {
+    if (this._liveDashboardConfiguration.vs && this._liveDashboardConfiguration.service_url && this._liveDashboardConfiguration.entryId) {
       this._liveDashboardConfiguration.version = environment.version;
-      this._kalturaClient.setDefaultRequestOptions({
-        ks: this._liveDashboardConfiguration.ks,
+      this._vidiunClient.setDefaultRequestOptions({
+        vs: this._liveDashboardConfiguration.vs,
       });
-      this._kalturaClient.setOptions({
+      this._vidiunClient.setOptions({
         endpointUrl: this._liveDashboardConfiguration.service_url + environment.bootstrap.service_url_extension,
-        clientTag: 'KalturaLiveDashboard'
+        clientTag: 'VidiunLiveDashboard'
       });
 
       console.log('Bootstrap service started successfully');

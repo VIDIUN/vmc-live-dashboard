@@ -38,7 +38,7 @@ export class VidiunPlayerComponent implements AfterViewInit, OnDestroy {
 	vidiunPlayerReady = new EventEmitter<any>();
 
 
-	private kdp: any;
+	private vdp: any;
 
 	constructor() {}
 

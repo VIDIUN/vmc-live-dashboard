@@ -10,9 +10,9 @@
     <span *ngIf="_dynamicInformation.streamStatus.state === 'Preview'" class="component-text" [class.component-text-reverted]="colorsReverted">{{ 'DASHBOARD.explicit_live.stream_is_preview_message' | translate }}</span>
     <span *ngIf="_dynamicInformation.streamStatus.state === 'Live'" class="component-text" [class.component-text-reverted]="colorsReverted">{{ _getStreamLiveMessage() | translate }}</span>
   </div>
-  <div *ngIf="_alertsArray.length" class="grid-middle kOverrideFAIcons">
+  <div *ngIf="_alertsArray.length" class="grid-middle vOverrideFAIcons">
     <div *ngIf="_alertsArray.length > 1" data-push-left="off" (click)="_onClickLeftArrow()">
-      <i class="kIcondropdown_arrow_left"
+      <i class="vIcondropdown_arrow_left"
          [class.arrow-disabled]="(_alertIndex === 0) && !colorsReverted"
          [class.arrow-enabled]="(_alertIndex !== 0) && !colorsReverted"
          [class.arrow-disabled-reverted]="(_alertIndex === 0) && colorsReverted"
@@ -23,7 +23,7 @@
       <span class="component-text" [class.component-text-reverted]="colorsReverted">{{ 'ALERTS.' + _alertsArray[_alertIndex].Code + '.message-text-box' | translate: _alertsArray[_alertIndex].Arguments }}</span>
     </div>
     <div *ngIf="_alertsArray.length > 1" (click)="_onClickRightArrow()">
-      <i class="kIcondropdown_arrow_right"
+      <i class="vIcondropdown_arrow_right"
          [class.arrow-disabled]="(_alertIndex === _alertsArray.length - 1) && !colorsReverted"
          [class.arrow-enabled]="(_alertIndex !== _alertsArray.length - 1) && !colorsReverted"
          [class.arrow-disabled-reverted]="(_alertIndex === _alertsArray.length - 1) && colorsReverted"

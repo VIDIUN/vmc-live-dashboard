@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { KalturaRecordStatus } from "kaltura-ngx-client/api/types/KalturaRecordStatus";
+import { VidiunRecordStatus } from "vidiun-ngx-client/api/types/VidiunRecordStatus";
 
 @Pipe({
   name: 'recordingType'

@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BootstrapService } from "./bootstrap.service";
 import { LiveEntryService } from "./services/live-entry.service";
-import { AreaBlockerMessage } from "@kaltura-ng/kaltura-ui";
+import { AreaBlockerMessage } from "@vidiun-ng/vidiun-ui";
 import { ApplicationMode, LoadingStatus } from "./types/live-dashboard.types";
 import { LiveDashboardConfiguration } from "./services/live-dashboard-configuration.service";
 import { environment } from "../environments/environment";

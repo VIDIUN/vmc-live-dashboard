@@ -1,4 +1,4 @@
-<k-area-blocker [showLoader]="_applicationLoading" [message]="_sectionBlockerMessage">
+<v-area-blocker [showLoader]="_applicationLoading" [message]="_sectionBlockerMessage">
   <div class="app-window" [class.app-window-reverted-color]="_configuration.mode === ApplicationMode.Webcast">
     <div class="default-mode" *ngIf="_applicationLoaded && _configuration.mode === ApplicationMode.Default">
       <default-dashboard></default-dashboard>

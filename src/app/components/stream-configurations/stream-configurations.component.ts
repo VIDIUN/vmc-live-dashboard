@@ -9,8 +9,8 @@ import {
   AlertSeverity, LiveEntryDynamicStreamInfo, LiveEntryStaticConfiguration, LiveEntryDiagnosticsInfo,
   FlavorObject, NodeStreams
 } from "../../types/live-dashboard.types";
-import { KalturaEntryServerNodeType } from "kaltura-ngx-client/api/types/KalturaEntryServerNodeType";
-import { AppLocalization } from "@kaltura-ng/kaltura-common";
+import { VidiunEntryServerNodeType } from "vidiun-ngx-client/api/types/VidiunEntryServerNodeType";
+import { AppLocalization } from "@vidiun-ng/vidiun-common";
 
 @Component({
   selector: 'stream-configurations',
@@ -83,7 +83,7 @@ export class StreamConfigurationsComponent implements OnInit, OnDestroy {
   }
 
   private _getStreamsSeverity(diagnostics: LiveEntryDiagnosticsInfo): void {
-    if (KalturaEntryServerNodeType.livePrimary === this._dynamicInformation.streamStatus.serverType) {
+    if (VidiunEntryServerNodeType.livePrimary === this._dynamicInformation.streamStatus.serverType) {
       if (diagnostics.streamHealth.data.primary.length) {
         // get the last report status as general status
         this._streamSeverity = diagnostics.streamHealth.data.primary[0].severity;
@@ -113,10 +113,10 @@ export class StreamConfigurationsComponent implements OnInit, OnDestroy {
 
   public _getSourceHeight(): string {
     let flavorsArray: FlavorObject[] = [];
-    if (KalturaEntryServerNodeType.livePrimary === this._dynamicInformation.streamStatus.serverType) {
+    if (VidiunEntryServerNodeType.livePrimary === this._dynamicInformation.streamStatus.serverType) {
       flavorsArray = this._allStreams.primary;
     }
-    else if (KalturaEntryServerNodeType.liveBackup === this._dynamicInformation.streamStatus.serverType) {
+    else if (VidiunEntryServerNodeType.liveBackup === this._dynamicInformation.streamStatus.serverType) {
       flavorsArray = this._allStreams.secondary;
     }
 

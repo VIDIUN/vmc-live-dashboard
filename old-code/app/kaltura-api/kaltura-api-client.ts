@@ -3,22 +3,22 @@ import { Http, URLSearchParams, Headers } from '@angular/http';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 
-import {KalturaMultiRequest} from "./kaltura-multi-request";
-import {KalturaRequest} from "./kaltura-request";
-import {KalturaAPIConfig} from "./kaltura-api-config";
+import {VidiunMultiRequest} from "./vidiun-multi-request";
+import {VidiunRequest} from "./vidiun-request";
+import {VidiunAPIConfig} from "./vidiun-api-config";
 
 
 @Injectable()
-export class KalturaAPIClient {
+export class VidiunAPIClient {
 
-    constructor(private http:Http, public config:KalturaAPIConfig) {
+    constructor(private http:Http, public config:VidiunAPIConfig) {
         if (!config) {
             throw new Error("missing configuration argument");
         }
     }
 
 
-    transmit(args : {parameters : any, ksValue : {assignAutomatically : boolean}}):Observable<any> {
+    transmit(args : {parameters : any, vsValue : {assignAutomatically : boolean}}):Observable<any> {
 
         // We use the actual args parameters to optimize performance, it should affect the api since the arguments are created inside the library elements.
 
@@ -28,11 +28,11 @@ export class KalturaAPIClient {
             args.parameters['format'] = this.config.format;
             args.parameters['apiVersion'] = this.config.apiVersion;
 
-            if (args.ksValue && args.ksValue.assignAutomatically) {
-                if (this.config.ks) {
-                    args.parameters['ks'] = this.config.ks;
+            if (args.vsValue && args.vsValue.assignAutomatically) {
+                if (this.config.vs) {
+                    args.parameters['vs'] = this.config.vs;
                 } else {
-                    return Observable.throw({errorCode: 'cannot_invoke_request_without_ks'});
+                    return Observable.throw({errorCode: 'cannot_invoke_request_without_vs'});
                 }
             }
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # For upgrade just type ./updateLiveDashboard <version>
 
-PRODUCT_PATH=/opt/kaltura/apps/liveDashboard
+PRODUCT_PATH=/opt/vidiun/apps/liveDashboard
 USAGE="Usage: script for changing liveDashboard version; to run execute: ./updateLiveDashboard <version>"
 VERSION=
 
@@ -21,7 +21,7 @@ function download_version() {
     rm -f ${VERSION}.zip
   fi
   echo "Downloading ${VERSION}.zip"
-  wget https://github.com/kaltura/kmc-live-dashboard/releases/download/${VERSION}/${VERSION}.zip
+  wget https://github.com/vidiun/vmc-live-dashboard/releases/download/${VERSION}/${VERSION}.zip
   echo "Running unzip ${VERSION}.zip"
   unzip ${VERSION}.zip
   echo "Removing ${VERSION}.zip"

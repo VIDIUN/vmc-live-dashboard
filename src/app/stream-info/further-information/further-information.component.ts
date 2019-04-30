@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LiveEntryService } from "../../services/live-entry.service";
 import { LiveEntryDynamicStreamInfo, Alert, DiagnosticsErrorCodes } from "../../types/live-dashboard.types";
 import { ISubscription } from "rxjs/Subscription";
-import { KalturaEntryServerNodeType } from "kaltura-typescript-client/types/KalturaEntryServerNodeType";
+import { VidiunEntryServerNodeType } from "vidiun-typescript-client/types/VidiunEntryServerNodeType";
 
 @Component({
   selector: 'further-information',
@@ -48,13 +48,13 @@ export class FurtherInformationComponent implements OnInit, OnDestroy {
   private _listenToHealthDiagnostics(): void {
     this._diagnosticsSubscription = this._liveEntryService.entryDiagnostics$.subscribe(response => {
       if (response && this._dynamicInformation.streamStatus.serverType) {
-        if (KalturaEntryServerNodeType.livePrimary.equals(this._dynamicInformation.streamStatus.serverType)
+        if (VidiunEntryServerNodeType.livePrimary.equals(this._dynamicInformation.streamStatus.serverType)
           && response.streamHealth.data.primary.length
           && response.streamHealth.data.primary[0].updatedTime > this._dynamicInformation.streamSession.timerStartTime) {
           this._alertsArray = response.streamHealth.data.primary[0].alerts.filter(alert => !this._alertsToIgnore.includes(alert.Code));
           this._alertIndex = 0;
         }
-        else if (KalturaEntryServerNodeType.liveBackup.equals(this._dynamicInformation.streamStatus.serverType)
+        else if (VidiunEntryServerNodeType.liveBackup.equals(this._dynamicInformation.streamStatus.serverType)
           && response.streamHealth.data.secondary.length
           && response.streamHealth.data.secondary[0].updatedTime > this._dynamicInformation.streamSession.timerStartTime) {
           this._alertsArray = response.streamHealth.data.secondary[0].alerts.filter(alert => !this._alertsToIgnore.includes(alert.Code));

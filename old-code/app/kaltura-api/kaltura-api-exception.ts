@@ -1,18 +1,18 @@
 
 
-export class KalturaAPIException{
+export class VidiunAPIException{
     code : string;
     message : string;
 
     static isMatch(response : any) : boolean
     {
-        return response && response.objectType === "KalturaAPIException";
+        return response && response.objectType === "VidiunAPIException";
     }
 
-    static create(response : any) : KalturaAPIException{
-        let result : KalturaAPIException = null;
-        if (KalturaAPIException.isMatch(response)){
-            result = new KalturaAPIException();
+    static create(response : any) : VidiunAPIException{
+        let result : VidiunAPIException = null;
+        if (VidiunAPIException.isMatch(response)){
+            result = new VidiunAPIException();
             result.code = response.code;
             result.message = response.message;
         }

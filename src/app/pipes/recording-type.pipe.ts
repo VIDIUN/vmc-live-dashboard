@@ -1,18 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { KalturaRecordStatus } from "kaltura-typescript-client/types/KalturaRecordStatus";
+import { VidiunRecordStatus } from "vidiun-typescript-client/types/VidiunRecordStatus";
 
 @Pipe({
   name: 'recordingType'
 })
 export class RecordingTypePipe implements PipeTransform {
 
-  transform(value: KalturaRecordStatus): string {
+  transform(value: VidiunRecordStatus): string {
     switch (value) {
-      case KalturaRecordStatus.disabled:
+      case VidiunRecordStatus.disabled:
         return "";
-      case KalturaRecordStatus.appended:
+      case VidiunRecordStatus.appended:
         return 'appendRecording';
-      case KalturaRecordStatus.perSession:
+      case VidiunRecordStatus.perSession:
         return 'newEntryPerSession';
     }
   }

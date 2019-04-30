@@ -6,37 +6,37 @@ import * as _ from 'lodash';
 import * as moment from 'moment';
 
 // Services and Configuration
-import { KalturaClient } from "@kaltura-ng/kaltura-client";
+import { VidiunClient } from "@vidiun-ng/vidiun-client";
 import { LiveEntryTimerTaskService } from "./entry-timer-task.service";
 import { ConversionProfileService } from "./conversion-profile.service";
 import { LiveDashboardConfiguration } from "./live-dashboard-configuration.service";
 import { environment } from "../../environments/environment";
 
-// Kaltura objects and types
-import { KalturaAPIException } from "kaltura-typescript-client";
-import { LiveStreamGetAction } from "kaltura-typescript-client/types/LiveStreamGetAction";
-import { LiveStreamUpdateAction } from "kaltura-typescript-client/types/LiveStreamUpdateAction";
-import { KalturaLiveStreamEntry } from "kaltura-typescript-client/types/KalturaLiveStreamEntry";
-import { EntryServerNodeListAction } from "kaltura-typescript-client/types/EntryServerNodeListAction";
-import { KalturaEntryServerNodeFilter } from "kaltura-typescript-client/types/KalturaEntryServerNodeFilter";
-import { KalturaEntryServerNode } from "kaltura-typescript-client/types/KalturaEntryServerNode";
-import { KalturaAssetParamsOrigin } from "kaltura-typescript-client/types/KalturaAssetParamsOrigin";
-import { KalturaDVRStatus } from "kaltura-typescript-client/types/KalturaDVRStatus";
-import { KalturaRecordStatus } from "kaltura-typescript-client/types/KalturaRecordStatus";
-import { KalturaEntryServerNodeStatus } from "kaltura-typescript-client/types/KalturaEntryServerNodeStatus";
-import { KalturaLiveStreamAdminEntry } from "kaltura-typescript-client/types/KalturaLiveStreamAdminEntry";
-import { KalturaLiveEntryServerNode } from "kaltura-typescript-client/types/KalturaLiveEntryServerNode";
-import { KalturaEntryServerNodeType } from "kaltura-typescript-client/types/KalturaEntryServerNodeType";
-import { BeaconListAction } from "kaltura-typescript-client/types/BeaconListAction";
-import { KalturaBeaconFilter } from "kaltura-typescript-client/types/KalturaBeaconFilter";
-import { KalturaFilterPager } from "kaltura-typescript-client/types/KalturaFilterPager";
-import { KalturaBeaconIndexType } from "kaltura-typescript-client/types/KalturaBeaconIndexType";
-import { KalturaBeacon } from "kaltura-typescript-client/types/KalturaBeacon";
-import { LiveReportsGetEventsAction } from "kaltura-typescript-client/types/LiveReportsGetEventsAction";
-import { KalturaLiveReportType } from "kaltura-typescript-client/types/KalturaLiveReportType";
-import { KalturaLiveReportInputFilter } from "kaltura-typescript-client/types/KalturaLiveReportInputFilter";
-import { KalturaReportGraph } from "kaltura-typescript-client/types/KalturaReportGraph";
-import { KalturaNullableBoolean } from "kaltura-typescript-client/types/KalturaNullableBoolean";
+// Vidiun objects and types
+import { VidiunAPIException } from "vidiun-typescript-client";
+import { LiveStreamGetAction } from "vidiun-typescript-client/types/LiveStreamGetAction";
+import { LiveStreamUpdateAction } from "vidiun-typescript-client/types/LiveStreamUpdateAction";
+import { VidiunLiveStreamEntry } from "vidiun-typescript-client/types/VidiunLiveStreamEntry";
+import { EntryServerNodeListAction } from "vidiun-typescript-client/types/EntryServerNodeListAction";
+import { VidiunEntryServerNodeFilter } from "vidiun-typescript-client/types/VidiunEntryServerNodeFilter";
+import { VidiunEntryServerNode } from "vidiun-typescript-client/types/VidiunEntryServerNode";
+import { VidiunAssetParamsOrigin } from "vidiun-typescript-client/types/VidiunAssetParamsOrigin";
+import { VidiunDVRStatus } from "vidiun-typescript-client/types/VidiunDVRStatus";
+import { VidiunRecordStatus } from "vidiun-typescript-client/types/VidiunRecordStatus";
+import { VidiunEntryServerNodeStatus } from "vidiun-typescript-client/types/VidiunEntryServerNodeStatus";
+import { VidiunLiveStreamAdminEntry } from "vidiun-typescript-client/types/VidiunLiveStreamAdminEntry";
+import { VidiunLiveEntryServerNode } from "vidiun-typescript-client/types/VidiunLiveEntryServerNode";
+import { VidiunEntryServerNodeType } from "vidiun-typescript-client/types/VidiunEntryServerNodeType";
+import { BeaconListAction } from "vidiun-typescript-client/types/BeaconListAction";
+import { VidiunBeaconFilter } from "vidiun-typescript-client/types/VidiunBeaconFilter";
+import { VidiunFilterPager } from "vidiun-typescript-client/types/VidiunFilterPager";
+import { VidiunBeaconIndexType } from "vidiun-typescript-client/types/VidiunBeaconIndexType";
+import { VidiunBeacon } from "vidiun-typescript-client/types/VidiunBeacon";
+import { LiveReportsGetEventsAction } from "vidiun-typescript-client/types/LiveReportsGetEventsAction";
+import { VidiunLiveReportType } from "vidiun-typescript-client/types/VidiunLiveReportType";
+import { VidiunLiveReportInputFilter } from "vidiun-typescript-client/types/VidiunLiveReportInputFilter";
+import { VidiunReportGraph } from "vidiun-typescript-client/types/VidiunReportGraph";
+import { VidiunNullableBoolean } from "vidiun-typescript-client/types/VidiunNullableBoolean";
 // Types
 import {
   LiveStreamStates, LiveStreamSession, LiveEntryDynamicStreamInfo, LiveEntryStaticConfiguration,
@@ -59,9 +59,9 @@ export class LiveEntryService implements OnDestroy {
   public  applicationStatus$ = this._applicationStatus.asObservable();
   private _liveStreamGetSubscription: ISubscription;
   // BehaviorSubjects subscribed by settings components for manipulation
-  private _liveStream = new BehaviorSubject<KalturaLiveStreamEntry>(null);
+  private _liveStream = new BehaviorSubject<VidiunLiveStreamEntry>(null);
   public  liveStream$ = this._liveStream.asObservable();
-  private _cachedLiveStream: KalturaLiveStreamEntry;
+  private _cachedLiveStream: VidiunLiveStreamEntry;
   // BehaviorSubjects subscribed by configuration display component for status monitoring
   private _entryStaticConfiguration = new BehaviorSubject<LiveEntryStaticConfiguration>(null);
   public  entryStaticConfiguration$ = this._entryStaticConfiguration.asObservable();
@@ -92,11 +92,11 @@ export class LiveEntryService implements OnDestroy {
   private _subscriptionDiagnosticsMonitoring: ISubscription;
 
   // BehaviorSubject to show number of watchers when stream is Live
-  private _numOfWatcherSubject = new BehaviorSubject<KalturaReportGraph[]>(null);
+  private _numOfWatcherSubject = new BehaviorSubject<VidiunReportGraph[]>(null);
   public numOfWatcher$ = this._numOfWatcherSubject.asObservable();
   private _numOfWatchersTimerSubscription: Subscription = null;
 
-  constructor(private _kalturaClient: KalturaClient,
+  constructor(private _vidiunClient: VidiunClient,
               private _entryTimerTask: LiveEntryTimerTaskService,
               private _conversionProfilesService: ConversionProfileService,
               private _liveDashboardConfiguration: LiveDashboardConfiguration,
@@ -147,9 +147,9 @@ export class LiveEntryService implements OnDestroy {
   }
 
   private _getLiveStream(): void {
-    this._liveStreamGetSubscription = this._kalturaClient.request(new LiveStreamGetAction({
+    this._liveStreamGetSubscription = this._vidiunClient.request(new LiveStreamGetAction({
         entryId : this._liveDashboardConfiguration.entryId,
-        acceptedTypes : [KalturaLiveStreamAdminEntry, KalturaLiveEntryServerNode]
+        acceptedTypes : [VidiunLiveStreamAdminEntry, VidiunLiveEntryServerNode]
       }))
       .subscribe(response => {
         this._liveStreamGetSubscription = null;
@@ -160,21 +160,21 @@ export class LiveEntryService implements OnDestroy {
       },
         error => {
           this._liveStreamGetSubscription = null;
-          if (error instanceof KalturaAPIException) {
+          if (error instanceof VidiunAPIException) {
             console.log(`[LiveStreamGet] Error: ${error.message}`);
             this._updatedApplicationStatus('liveEntry', LoadingStatus.failed);
           }
         });
   }
 
-  private _parseEntryConfiguration(liveEntryObj: KalturaLiveStreamEntry): void {
+  private _parseEntryConfiguration(liveEntryObj: VidiunLiveStreamEntry): void {
     let entryConfig: LiveEntryStaticConfiguration = {};
     this._conversionProfilesService.getConversionProfileFlavors(liveEntryObj.conversionProfileId)
       .subscribe(response => {
-        entryConfig.dvr = (liveEntryObj.dvrStatus === KalturaDVRStatus.enabled);
-        entryConfig.recording = (liveEntryObj.recordStatus !== KalturaRecordStatus.disabled);
+        entryConfig.dvr = (liveEntryObj.dvrStatus === VidiunDVRStatus.enabled);
+        entryConfig.recording = (liveEntryObj.recordStatus !== VidiunRecordStatus.disabled);
         // Look through the array and find the first flavor that is transcoded
-        let isTranscodedFlavor = response.objects.find(f => { return f.origin ===  KalturaAssetParamsOrigin.convert });
+        let isTranscodedFlavor = response.objects.find(f => { return f.origin ===  VidiunAssetParamsOrigin.convert });
         entryConfig.transcoding = isTranscodedFlavor ? true : false;
         this._entryStaticConfiguration.next(entryConfig);
         this._updatedApplicationStatus('liveEntry', LoadingStatus.succeeded);
@@ -184,8 +184,8 @@ export class LiveEntryService implements OnDestroy {
 
   private _runEntryStatusMonitoring(): void {
     this._subscriptionEntryStatusMonitoring = this._entryTimerTask.runTimer(() => {
-      return this._kalturaClient.request(new EntryServerNodeListAction({
-        filter: new KalturaEntryServerNodeFilter({entryIdEqual: this._liveDashboardConfiguration.entryId})
+      return this._vidiunClient.request(new EntryServerNodeListAction({
+        filter: new VidiunEntryServerNodeFilter({entryIdEqual: this._liveDashboardConfiguration.entryId})
       }))
         .do(response => {
           // Make sure primary entryServerNode is first in array
@@ -195,14 +195,14 @@ export class LiveEntryService implements OnDestroy {
         })
     }, environment.liveEntryService.stream_status_interval_time_in_ms, true)
       .subscribe(response => {
-        if (response.error instanceof KalturaAPIException) {
+        if (response.error instanceof VidiunAPIException) {
           console.log(`[EntryServeNodeList] Error: ${response.error.message}`);
           this._updatedApplicationStatus('streamStatus', LoadingStatus.failed);
         }
       });
   }
 
-  private _parseEntryServeNodeList(snList: KalturaEntryServerNode[]): void {
+  private _parseEntryServeNodeList(snList: VidiunEntryServerNode[]): void {
     let dynamicConfigObj = this._entryDynamicInformation.getValue();
     // Check redundancy if more than one serverNode was returned
     dynamicConfigObj.redundancy = this._getRedundancyStatus(snList);
@@ -214,36 +214,36 @@ export class LiveEntryService implements OnDestroy {
     this._entryDynamicInformation.next(dynamicConfigObj);
   }
 
-  private _getRedundancyStatus(serverNodeList: KalturaEntryServerNode[]): boolean {
+  private _getRedundancyStatus(serverNodeList: VidiunEntryServerNode[]): boolean {
     if (serverNodeList.length > 1) {
-      return serverNodeList.every(sn => sn.status !== KalturaEntryServerNodeStatus.markedForDeletion);
+      return serverNodeList.every(sn => sn.status !== VidiunEntryServerNodeStatus.markedForDeletion);
     }
     return false;
   }
 
-  private _getStreamStatus(serverNodeList: KalturaEntryServerNode[], currentInfo: LiveEntryDynamicStreamInfo): LiveStreamStates {
+  private _getStreamStatus(serverNodeList: VidiunEntryServerNode[], currentInfo: LiveEntryDynamicStreamInfo): LiveStreamStates {
     let liveEntry = this._liveStream.getValue();
     // Possible scenarios for streamStatus:
     // (1) If only primary -> StreamStatus equals primary status
     // (2) If only secondary -> StreamStatus equals secondary status
     // (3) If both -> StreamStatus equals the same as recent active
     if (currentInfo.redundancy) {
-      if (!currentInfo.streamStatus.serverType || (KalturaEntryServerNodeType.livePrimary.equals(currentInfo.streamStatus.serverType))) {
+      if (!currentInfo.streamStatus.serverType || (VidiunEntryServerNodeType.livePrimary.equals(currentInfo.streamStatus.serverType))) {
         return {
           state: this._streamStatusPipe.transform(serverNodeList[0].status, liveEntry.viewMode),
-          serverType: KalturaEntryServerNodeType.livePrimary
+          serverType: VidiunEntryServerNodeType.livePrimary
         };
       }
-      else if (KalturaEntryServerNodeType.liveBackup.equals(currentInfo.streamStatus.serverType)) {
+      else if (VidiunEntryServerNodeType.liveBackup.equals(currentInfo.streamStatus.serverType)) {
         return {
           state: this._streamStatusPipe.transform(serverNodeList[1].status, liveEntry.viewMode),
-          serverType: KalturaEntryServerNodeType.liveBackup
+          serverType: VidiunEntryServerNodeType.liveBackup
         };
       }
     }
     else {
       if (serverNodeList.length) {
-        let sn = serverNodeList.find(esn => { return esn.status !== KalturaEntryServerNodeStatus.markedForDeletion });
+        let sn = serverNodeList.find(esn => { return esn.status !== VidiunEntryServerNodeStatus.markedForDeletion });
         if (sn) {
           return {
             state: this._streamStatusPipe.transform(sn.status, liveEntry.viewMode),
@@ -252,7 +252,7 @@ export class LiveEntryService implements OnDestroy {
         }
       }
       return {
-        state: this._streamStatusPipe.transform(KalturaEntryServerNodeStatus.stopped)
+        state: this._streamStatusPipe.transform(VidiunEntryServerNodeStatus.stopped)
       }
     }
   }
@@ -274,7 +274,7 @@ export class LiveEntryService implements OnDestroy {
     }
   }
 
-  private _updateStreamCreationTime(serverNodeList: KalturaEntryServerNode[], dynamicInfoObj: LiveEntryDynamicStreamInfo): void {
+  private _updateStreamCreationTime(serverNodeList: VidiunEntryServerNode[], dynamicInfoObj: LiveEntryDynamicStreamInfo): void {
     if (serverNodeList.length > 0) {
       dynamicInfoObj.streamCreationTime = serverNodeList[0].createdAt ? serverNodeList[0].createdAt.valueOf() : null;
       // find all primary & secondary streams and find earliest createdAt stream time
@@ -288,14 +288,14 @@ export class LiveEntryService implements OnDestroy {
   }
 
   private _streamHealthInitialization(): void {
-    this._subscriptionStreamHealthInitialization = this._kalturaClient.request(new BeaconListAction({
-      filter: new KalturaBeaconFilter({
+    this._subscriptionStreamHealthInitialization = this._vidiunClient.request(new BeaconListAction({
+      filter: new VidiunBeaconFilter({
         orderBy: '-updatedAt',
         eventTypeIn: '0_healthData,1_healthData',
         objectIdIn: this._liveDashboardConfiguration.entryId,
-        indexTypeEqual: KalturaBeaconIndexType.log
+        indexTypeEqual: VidiunBeaconIndexType.log
       }),
-      pager: new KalturaFilterPager({
+      pager: new VidiunFilterPager({
         pageSize: environment.liveEntryService.max_beacon_health_reports_to_show
       })
     }))
@@ -309,13 +309,13 @@ export class LiveEntryService implements OnDestroy {
   private _runStreamHealthMonitoring(): void {
     this._subscriptionStreamHealthMonitoring = this._entryTimerTask.runTimer(() => {
       let lastUpdateTime = this._entryDiagnostics.getValue().streamHealth.updatedTime;
-      return this._kalturaClient.request(new BeaconListAction({
-        filter: new KalturaBeaconFilter({
+      return this._vidiunClient.request(new BeaconListAction({
+        filter: new VidiunBeaconFilter({
           orderBy: '-updatedAt',
           updatedAtGreaterThanOrEqual: new Date(lastUpdateTime),
           eventTypeIn: '0_healthData,1_healthData',
           objectIdIn: this._liveDashboardConfiguration.entryId,
-          indexTypeEqual: KalturaBeaconIndexType.log
+          indexTypeEqual: VidiunBeaconIndexType.log
         })
       }))
         .do(response => {
@@ -325,7 +325,7 @@ export class LiveEntryService implements OnDestroy {
         })
     }, environment.liveEntryService.stream_health_interval_time_in_ms)
       .subscribe(response => {
-        if (response.error instanceof KalturaAPIException) {
+        if (response.error instanceof VidiunAPIException) {
           console.log(`[BeaconHealthMonitoring] Error: ${response.error.message}`);
         }
       });
@@ -333,11 +333,11 @@ export class LiveEntryService implements OnDestroy {
 
   private _runDiagnosticsDataMonitoring(): void {
     this._subscriptionDiagnosticsMonitoring = this._entryTimerTask.runTimer(() => {
-      return this._kalturaClient.request(new BeaconListAction({
-        filter: new KalturaBeaconFilter({
+      return this._vidiunClient.request(new BeaconListAction({
+        filter: new VidiunBeaconFilter({
           eventTypeIn: '0_staticData,0_dynamicData,1_staticData,1_dynamicData',
           objectIdIn: this._liveDashboardConfiguration.entryId,
-          indexTypeEqual: KalturaBeaconIndexType.state
+          indexTypeEqual: VidiunBeaconIndexType.state
         })
       }))
         .do(response => {
@@ -346,13 +346,13 @@ export class LiveEntryService implements OnDestroy {
         })
     }, environment.liveEntryService.stream_diagnostics_interval_time_in_ms, true)
       .subscribe(response => {
-        if (response.error instanceof KalturaAPIException) {
+        if (response.error instanceof VidiunAPIException) {
           console.log(`[BeaconDiagnosticsMonitoring] Error: ${response.error.message}`);
         }
       })
   }
 
-  private _parseBeacons(beaconsArray: KalturaBeacon[], isLoggedType = false): void {
+  private _parseBeacons(beaconsArray: VidiunBeacon[], isLoggedType = false): void {
     let entryDiagnosticsObject = this._entryDiagnostics.getValue();
 
     if (beaconsArray.length && isLoggedType) {
@@ -454,19 +454,19 @@ export class LiveEntryService implements OnDestroy {
     });
   }
 
-  private _getNumOfWatchers(): Observable<KalturaReportGraph[]> {
+  private _getNumOfWatchers(): Observable<VidiunReportGraph[]> {
     // Get results for a 90 sec window
     let liveReportsRequest = new LiveReportsGetEventsAction({
-      reportType: KalturaLiveReportType.entryTimeLine,
-      filter: new KalturaLiveReportInputFilter({
+      reportType: VidiunLiveReportType.entryTimeLine,
+      filter: new VidiunLiveReportInputFilter({
         entryIds: this._liveDashboardConfiguration.entryId,
         fromTime: moment().subtract(110, 'seconds').toDate(),
         toTime: moment().subtract(20, 'seconds').toDate(),
-        live: KalturaNullableBoolean.trueValue
+        live: VidiunNullableBoolean.trueValue
       })
     });
 
-    return this._kalturaClient.request(liveReportsRequest)
+    return this._vidiunClient.request(liveReportsRequest)
       .do(response => {
           this._numOfWatcherSubject.next(response);
         },
@@ -476,13 +476,13 @@ export class LiveEntryService implements OnDestroy {
   }
 
   public updateLiveStreamEntry(propertiesToUpdate: string[]) {
-    let liveStreamEntryArg = new KalturaLiveStreamEntry();
+    let liveStreamEntryArg = new VidiunLiveStreamEntry();
 
     propertiesToUpdate.forEach(p => {
       liveStreamEntryArg[p] = this._liveStream.value[p];
     });
 
-    const liveStreamUpdateSubscription = this._kalturaClient.request(new LiveStreamUpdateAction({
+    const liveStreamUpdateSubscription = this._vidiunClient.request(new LiveStreamUpdateAction({
       entryId: this._liveDashboardConfiguration.entryId,
       liveStreamEntry: liveStreamEntryArg
     }))

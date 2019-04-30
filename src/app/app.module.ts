@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TranslateModule } from "ng2-translate";
-import { TooltipModule } from '@kaltura-ng/kaltura-ui';
+import { TooltipModule } from '@vidiun-ng/vidiun-ui';
 
 // PrimeNG
 import { TabMenuModule, TabViewModule, InputTextModule, InputTextareaModule, ButtonModule, DropdownModule, CheckboxModule, RadioButtonModule, GrowlModule } from 'primeng/primeng';
 
 // Services
-import { KalturaClient } from '@kaltura-ng/kaltura-client/kaltura-client.service';
-import { KalturaClientConfiguration } from '@kaltura-ng/kaltura-client/kaltura-client-configuration.service';
+import { VidiunClient } from '@vidiun-ng/vidiun-client/vidiun-client.service';
+import { VidiunClientConfiguration } from '@vidiun-ng/vidiun-client/vidiun-client-configuration.service';
 import { LiveEntryService } from './services/live-entry.service';
 import { ConversionProfileService } from "./services/conversion-profile.service";
 import { LiveEntryTimerTaskService } from "./services/entry-timer-task.service";
@@ -25,11 +25,11 @@ import { EncoderSettingsComponent } from './stream-info/encoder-settings/encoder
 import { BasicSettingsComponent } from './stream-info/basic-settings/basic-settings.component';
 import { AdditionalSettingsComponent } from './stream-info/additional-settings/additional-settings.component';
 import { StreamConfigurationsComponent } from './stream-info/stream-configurations/stream-configurations.component';
-import { AreaBlockerComponent } from "@kaltura-ng/kaltura-ui/area-blocker";
+import { AreaBlockerComponent } from "@vidiun-ng/vidiun-ui/area-blocker";
 import { StreamHealthNotificationsComponent } from './stream-info/stream-health-notifications/stream-health-notifications.component';
 import { FurtherInformationComponent } from './stream-info/further-information/further-information.component';
 // TODO: Remove!!!
-import { KalturaPlayerComponent } from './player/player.component';
+import { VidiunPlayerComponent } from './player/player.component';
 
 // Pipes
 import { RecordingTypePipe } from './pipes/recording-type.pipe';
@@ -38,7 +38,7 @@ import { EntryTypePipe } from './pipes/entry-type.pipe';
 import { EntryBooleanConfigurationPipe } from './pipes/entry-boolean-configuration.pipe';
 import { EntryDynamicInformationPipe } from './pipes/entry-dynamic-information.pipe';
 import { TranscodingInfoPipe } from './pipes/transcoding-info.pipe';
-import { SafePipe } from "@kaltura-ng/kaltura-ui/safe.pipe";
+import { SafePipe } from "@vidiun-ng/vidiun-ui/safe.pipe";
 import { DurationPipe } from "./pipes/duration.pipe";
 import { LocaleTimePipe } from "./pipes/locale-time.pipe";
 import { SeverityToHealthPipe } from './pipes/severity-to-health.pipe';
@@ -47,11 +47,11 @@ import { StreamStatusPipe } from './pipes/stream-status.pipe';
 
 // Configuration Services
 import { LiveDashboardConfiguration } from "./services/live-dashboard-configuration.service";
-import { AppLocalization, AppStorage } from "@kaltura-ng/kaltura-common";
+import { AppLocalization, AppStorage } from "@vidiun-ng/vidiun-common";
 
 // TODO: Temporary solution! --> remove
 export function clientConfigurationFactory() {
-  const result = new KalturaClientConfiguration();
+  const result = new VidiunClientConfiguration();
   result.endpointUrl = '.';
   result.clientTag = '.';
   return result;
@@ -81,7 +81,7 @@ export function clientConfigurationFactory() {
     CodeToSeverityPipe,
     StreamStatusPipe,
     FurtherInformationComponent,
-    KalturaPlayerComponent
+    VidiunPlayerComponent
   ],
   imports: [
     BrowserModule,
@@ -101,9 +101,9 @@ export function clientConfigurationFactory() {
     TooltipModule
   ],
   providers: [
-    KalturaClient,
+    VidiunClient,
     {
-      provide: KalturaClientConfiguration,
+      provide: VidiunClientConfiguration,
       useFactory: clientConfigurationFactory
 
     },

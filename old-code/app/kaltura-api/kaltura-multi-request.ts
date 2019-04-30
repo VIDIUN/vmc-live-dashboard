@@ -2,42 +2,42 @@ import { Observable } from 'rxjs/Observable'
 
 import { URLSearchParams } from '@angular/http';
 
-import { KalturaRequest } from "./kaltura-request";
-import {KalturaAPIClient} from "./kaltura-api-client";
+import { VidiunRequest } from "./vidiun-request";
+import {VidiunAPIClient} from "./vidiun-api-client";
 
 import * as R from 'ramda';
-import {KalturaAPIException} from "./kaltura-api-exception";
+import {VidiunAPIException} from "./vidiun-api-exception";
 
-export  class KalturaMultiRequest {
+export  class VidiunMultiRequest {
 
-    private kalturaRequests : KalturaRequest<any>[];
+    private vidiunRequests : VidiunRequest<any>[];
 
     constructor(){
-        this.kalturaRequests = [];
+        this.vidiunRequests = [];
     }
 
-    public addRequest(request : KalturaRequest<any>) : void{
-        this.kalturaRequests.push(request);
+    public addRequest(request : VidiunRequest<any>) : void{
+        this.vidiunRequests.push(request);
     }
 
-    public execute(client : KalturaAPIClient, ignoreAPIExceptions = false) : Observable<any>{
+    public execute(client : VidiunAPIClient, ignoreAPIExceptions = false) : Observable<any>{
 
-        if (this.kalturaRequests.length) {
+        if (this.vidiunRequests.length) {
 
-            const ksValue = { assignAutomatically : true};
+            const vsValue = { assignAutomatically : true};
 
             const parameters : any = {
                 'service' : 'multirequest'
             };
 
-            var ksValueGeneratorIndex = R.findIndex(R.propEq('ksValueGenerator',true))(this.kalturaRequests);
+            var vsValueGeneratorIndex = R.findIndex(R.propEq('vsValueGenerator',true))(this.vidiunRequests);
 
-            if (ksValueGeneratorIndex > -1)
+            if (vsValueGeneratorIndex > -1)
             {
-                ksValue.assignAutomatically = false;
+                vsValue.assignAutomatically = false;
             }
 
-            this.kalturaRequests.forEach((request,index) => {
+            this.vidiunRequests.forEach((request,index) => {
 
                 const requestIdentifier = index + 1;
 
@@ -46,21 +46,21 @@ export  class KalturaMultiRequest {
                     action : request.action
                 },request.parameters);
 
-                if (ksValueGeneratorIndex > -1 && ksValueGeneratorIndex !== index){
-                    requestParameters['ks'] = `{${ksValueGeneratorIndex+1}:result}`;
+                if (vsValueGeneratorIndex > -1 && vsValueGeneratorIndex !== index){
+                    requestParameters['vs'] = `{${vsValueGeneratorIndex+1}:result}`;
                 }
 
                 parameters[requestIdentifier] = requestParameters;
             });
 
-            return client.transmit({ parameters,ksValue }).flatMap(responses =>
+            return client.transmit({ parameters,vsValue }).flatMap(responses =>
             {
                 const errorResponses : any[] = [];
                 const parsedResponses  = responses.map((response : any) =>
                 {
-                    if (KalturaAPIException.isMatch(response))
+                    if (VidiunAPIException.isMatch(response))
                     {
-                        const errorResponse = KalturaAPIException.create(response);
+                        const errorResponse = VidiunAPIException.create(response);
                         errorResponses.push(errorResponse);
                         return errorResponse;
                     }

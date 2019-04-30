@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {KalturaRequest} from "../kaltura-request";
+import {VidiunRequest} from "../vidiun-request";
 
 @Injectable()
 export class LiveAnalyticsService {
@@ -8,21 +8,21 @@ export class LiveAnalyticsService {
   constructor(){
   }
 
-  static getEvents(reportType: string ='', filter: any = {}, responseProfile: any = {}, pageSize: number = 30, pageIndex: number = 1): KalturaRequest<any> {
+  static getEvents(reportType: string ='', filter: any = {}, responseProfile: any = {}, pageSize: number = 30, pageIndex: number = 1): VidiunRequest<any> {
 
     const parameters :any = {
       pager: {
-        objectType: "KalturaFilterPager",
+        objectType: "VidiunFilterPager",
         pageSize: pageSize,
         pageIndex: pageIndex
       },
       responseProfile: Object.assign({}, responseProfile),
-      filter: Object.assign({'objectType':'KalturaLiveReportInputFilter'}, filter),
+      filter: Object.assign({'objectType':'VidiunLiveReportInputFilter'}, filter),
       action: 'getEvents',
       reportType: reportType
     };
 
-    return new KalturaRequest<any>('liveReports', 'getEvents', parameters);
+    return new VidiunRequest<any>('liveReports', 'getEvents', parameters);
   }
 
 }

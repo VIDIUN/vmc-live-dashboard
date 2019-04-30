@@ -1,36 +1,36 @@
 import { Injectable } from '@angular/core';
-import { KalturaClient, KalturaClientConfiguration } from "@kaltura-ng/kaltura-client";
+import { VidiunClient, VidiunClientConfiguration } from "@vidiun-ng/vidiun-client";
 import { LiveDashboardConfiguration } from "./services/live-dashboard-configuration.service";
 import { Observable } from "rxjs/Observable";
 import { TranslateService } from "ng2-translate";
 import { environment } from "../environments/environment";
-import { AppLocalization } from "@kaltura-ng/kaltura-common";
+import { AppLocalization } from "@vidiun-ng/vidiun-common";
 
 declare var window: any;
 
 @Injectable()
 export class BootstrapService {
 
-  constructor(private _kalturaClient: KalturaClient,
-              private _kalturaClientConfiguration: KalturaClientConfiguration,
+  constructor(private _vidiunClient: VidiunClient,
+              private _vidiunClientConfiguration: VidiunClientConfiguration,
               private _liveDashboardConfiguration: LiveDashboardConfiguration,
               private _appLocalization: AppLocalization) {
   }
 
   public initialize(): Observable<any> {
-    if (window && window.top && window.top.kmc && window.top.kmc.vars && window.top.kmc.vars.liveDashboard) {
-      this._liveDashboardConfiguration.ks =           window.top.kmc.vars.ks;
-      this._liveDashboardConfiguration.service_url =  window.top.kmc.vars.service_url;
-      this._liveDashboardConfiguration.entryId =      window.top.kmc.vars.liveDashboard.entryId;
-      this._liveDashboardConfiguration.uiConfId =     window.top.kmc.vars.liveDashboard.uiConfId;
-      this._liveDashboardConfiguration.version =      window.top.kmc.vars.liveDashboard.version;
+    if (window && window.top && window.top.vmc && window.top.vmc.vars && window.top.vmc.vars.liveDashboard) {
+      this._liveDashboardConfiguration.vs =           window.top.vmc.vars.vs;
+      this._liveDashboardConfiguration.service_url =  window.top.vmc.vars.service_url;
+      this._liveDashboardConfiguration.entryId =      window.top.vmc.vars.liveDashboard.entryId;
+      this._liveDashboardConfiguration.uiConfId =     window.top.vmc.vars.liveDashboard.uiConfId;
+      this._liveDashboardConfiguration.version =      window.top.vmc.vars.liveDashboard.version;
       this._liveDashboardConfiguration.lang =         window.top.lang ? window.top.lang : 'en';
     }
 
-    if (this._liveDashboardConfiguration.ks && this._liveDashboardConfiguration.service_url && this._liveDashboardConfiguration.entryId) {
-      this._kalturaClient.ks = this._liveDashboardConfiguration.ks;
-      this._kalturaClient.endpointUrl = this._liveDashboardConfiguration.service_url + environment.bootstrap.service_url_extension;
-      this._kalturaClientConfiguration.clientTag = 'KalturaLiveDashboard';
+    if (this._liveDashboardConfiguration.vs && this._liveDashboardConfiguration.service_url && this._liveDashboardConfiguration.entryId) {
+      this._vidiunClient.vs = this._liveDashboardConfiguration.vs;
+      this._vidiunClient.endpointUrl = this._liveDashboardConfiguration.service_url + environment.bootstrap.service_url_extension;
+      this._vidiunClientConfiguration.clientTag = 'VidiunLiveDashboard';
 
       // init i18n - Set english as default language and initialize localization service
       // use only prefix (e.g: all english begin with en-xx)

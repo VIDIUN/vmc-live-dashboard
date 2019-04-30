@@ -3,9 +3,9 @@ import { LiveEntryService } from "../services/live-entry.service";
 import { LiveDashboardConfiguration } from "../services/live-dashboard-configuration.service";
 import { LiveEntryDynamicStreamInfo, LoadingStatus } from "../types/live-dashboard.types";
 import { ISubscription } from "rxjs/Subscription";
-import { KalturaViewMode } from "kaltura-typescript-client/types/KalturaViewMode";
-import { KalturaLiveStreamEntry } from "kaltura-typescript-client/types/KalturaLiveStreamEntry";
-import { KalturaRecordingStatus } from "kaltura-typescript-client/types/KalturaRecordingStatus";
+import { VidiunViewMode } from "vidiun-typescript-client/types/VidiunViewMode";
+import { VidiunLiveStreamEntry } from "vidiun-typescript-client/types/VidiunLiveStreamEntry";
+import { VidiunRecordingStatus } from "vidiun-typescript-client/types/VidiunRecordingStatus";
 
 interface ExplicitLiveObject {
   enabled?: boolean,
@@ -15,7 +15,7 @@ interface ExplicitLiveObject {
 interface PlayerConfig {
   partnerId?: number,
   entryId?: string,
-  ks?: string,
+  vs?: string,
   uiConfId?: string,
   serviceUrl?: string
   flashVars?: Object
@@ -37,10 +37,10 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
     streamStatus: 'Offline'
   };
   public  _explicitLiveInformation: ExplicitLiveObject = {};
-  public  _liveEntry: KalturaLiveStreamEntry;
+  public  _liveEntry: VidiunLiveStreamEntry;
   public  _playerConfig: PlayerConfig = {};
   public _inFullScreen = false;
-  private _kdp: any;
+  private _vdp: any;
 
   constructor(private _liveEntryService : LiveEntryService,
               public _liveDashboardConfiguration: LiveDashboardConfiguration) { }
@@ -55,7 +55,7 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
     this._applicationStatusSubscription.unsubscribe();
     this._liveStreamSubscription.unsubscribe();
     this._dynamicInformationSubscription.unsubscribe();
-    this._kdp.kUnbind('.liveDashboard');
+    this._vdp.vUnbind('.liveDashboard');
   }
 
   private _listenToApplicationStatus(): void {
@@ -75,16 +75,16 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
 
         this._playerConfig.partnerId = response.partnerId;
         this._playerConfig.entryId = response.id;
-        this._playerConfig.ks = this._liveDashboardConfiguration.ks;
+        this._playerConfig.vs = this._liveDashboardConfiguration.vs;
         this._playerConfig.uiConfId = this._liveDashboardConfiguration.uiConfId;
         this._playerConfig.serviceUrl = this._liveDashboardConfiguration.service_url;
         this._playerConfig.flashVars = {
-          SkipKSOnIsLiveRequest: false,
-          ks: this._playerConfig.ks
+          SkipVSOnIsLiveRequest: false,
+          vs: this._playerConfig.vs
         };
 
         this._explicitLiveInformation.enabled = response.explicitLive;
-        this._explicitLiveInformation.previewMode = response.viewMode === KalturaViewMode.preview;
+        this._explicitLiveInformation.previewMode = response.viewMode === VidiunViewMode.preview;
       }
     });
   }
@@ -98,25 +98,25 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
   }
 
   public _onClickGoLive() {
-    this._liveEntry.viewMode = KalturaViewMode.allowAll;
-    this._liveEntry.recordingStatus = KalturaRecordingStatus.active;
+    this._liveEntry.viewMode = VidiunViewMode.allowAll;
+    this._liveEntry.recordingStatus = VidiunRecordingStatus.active;
 
     this._liveEntryService.updateLiveStreamEntry(['viewMode', 'recordingStatus']);
   }
 
   public _onClickEndLive() {
-    this._liveEntry.viewMode = KalturaViewMode.preview;
-    this._liveEntry.recordingStatus = KalturaRecordingStatus.stopped;
+    this._liveEntry.viewMode = VidiunViewMode.preview;
+    this._liveEntry.recordingStatus = VidiunRecordingStatus.stopped;
 
     this._liveEntryService.updateLiveStreamEntry(['viewMode', 'recordingStatus']);
   }
 
-  public _onPlayerReady(kdp: any) {
-    this._kdp = kdp;
-    kdp.kBind( "openFullScreen.liveDashboard", () => {
+  public _onPlayerReady(vdp: any) {
+    this._vdp = vdp;
+    vdp.vBind( "openFullScreen.liveDashboard", () => {
       this._inFullScreen = true;
     });
-    kdp.kBind( "closeFullScreen.liveDashboard", () => {
+    vdp.vBind( "closeFullScreen.liveDashboard", () => {
       this._inFullScreen = false;
     });
 

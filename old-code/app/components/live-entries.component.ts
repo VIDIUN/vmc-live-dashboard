@@ -9,7 +9,7 @@ import {LocalStorage} from 'ng2-webstorage';
 
 
 @Component({
-    selector: 'kmc-live-entries',
+    selector: 'vmc-live-entries',
     templateUrl: './app/components/live-entries.component.html',
     providers: [
         LiveEntryService

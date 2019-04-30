@@ -1,7 +1,7 @@
-@import '../../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/_variables.scss';
+@import '../../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/_variables.scss';
 
 .component-text {
-  color: $kGrayscale2;
+  color: $vGrayscale2;
 }
 
 .learn-more-not-live {
@@ -11,10 +11,10 @@
 .learn-more-link {
   margin-top: 5px;
   text-decoration: underline;
-  color: $kTertiary;
+  color: $vTertiary;
 
   &:hover {
-    color: darken($kTertiary, 20%);
+    color: darken($vTertiary, 20%);
   }
 }
 
@@ -27,9 +27,9 @@
 }
 
 .arrow-disabled {
-  color: $kGrayscale5;
+  color: $vGrayscale5;
 }
 
 .arrow-enabled {
-  color: $kGrayscale1;
+  color: $vGrayscale1;
 }

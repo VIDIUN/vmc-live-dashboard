@@ -1,34 +1,34 @@
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import {KalturaAPIClient} from "./kaltura-api-client";
-import {KalturaAPIException} from "./kaltura-api-exception";
+import {VidiunAPIClient} from "./vidiun-api-client";
+import {VidiunAPIException} from "./vidiun-api-exception";
 
 
 
-export  class KalturaRequest<T> {
+export  class VidiunRequest<T> {
 
-    public ksValueGenerator = false;
+    public vsValueGenerator = false;
 
-    constructor(public service : string, public action : string, public parameters : Object, options? : { ksValueGenerator? : boolean} ) {
-        if (options && typeof options.ksValueGenerator === 'boolean')
+    constructor(public service : string, public action : string, public parameters : Object, options? : { vsValueGenerator? : boolean} ) {
+        if (options && typeof options.vsValueGenerator === 'boolean')
         {
-            this.ksValueGenerator = options.ksValueGenerator;
+            this.vsValueGenerator = options.vsValueGenerator;
         }
     }
 
-    execute(client : KalturaAPIClient) : Observable<any>{
-        const ksValue = { assignAutomatically : !this.ksValueGenerator };
+    execute(client : VidiunAPIClient) : Observable<any>{
+        const vsValue = { assignAutomatically : !this.vsValueGenerator };
         const requestParameters = Object.assign({
             service : this.service,
             action : this.action
         },this.parameters);
 
-        return client.transmit({ parameters : requestParameters, ksValue}).flatMap(response =>
+        return client.transmit({ parameters : requestParameters, vsValue}).flatMap(response =>
         {
-            if (KalturaAPIException.isMatch(response))
+            if (VidiunAPIException.isMatch(response))
             {
-                const errorResponse = KalturaAPIException.create(response);
+                const errorResponse = VidiunAPIException.create(response);
                 return Observable.throw(errorResponse);
 
             }

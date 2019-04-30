@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
-$mc-theme-font-path : '../node_modules/@kaltura-ng/mc-theme/themes/default/fonts';
+$mc-theme-font-path : '../node_modules/@vidiun-ng/mc-theme/themes/default/fonts';
 
-@import '../node_modules/@kaltura-ng/mc-theme/themes/default/scss/variables.scss';
-@import '../node_modules/@kaltura-ng/mc-theme/themes/default/scss/index.scss';
+@import '../node_modules/@vidiun-ng/mc-theme/themes/default/scss/variables.scss';
+@import '../node_modules/@vidiun-ng/mc-theme/themes/default/scss/index.scss';
 
 * {
   font-size: 15px;
@@ -22,7 +22,7 @@ $mc-theme-font-path : '../node_modules/@kaltura-ng/mc-theme/themes/default/fonts
 }
 
 .bullet-green {
-  color: $kSuccess;
+  color: $vSuccess;
 }
 
 .bullet-yellow {
@@ -30,11 +30,11 @@ $mc-theme-font-path : '../node_modules/@kaltura-ng/mc-theme/themes/default/fonts
 }
 
 .bullet-red {
-  color: $kDandger;
+  color: $vDandger;
 }
 
 .bullet-grey {
-  color: $kGrayscale2;
+  color: $vGrayscale2;
 }
 
 .alignLeft {

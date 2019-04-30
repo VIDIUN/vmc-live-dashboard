@@ -1,27 +1,27 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { KalturaMediaType } from "kaltura-typescript-client/types/KalturaMediaType";
+import { VidiunMediaType } from "vidiun-typescript-client/types/VidiunMediaType";
 
 @Pipe({
   name: 'entryType'
 })
 export class EntryTypePipe implements PipeTransform {
 
-  transform(value: KalturaMediaType): string {
+  transform(value: VidiunMediaType): string {
     let entryType: string = "";
     switch (value) {
-      case KalturaMediaType.audio:
+      case VidiunMediaType.audio:
         entryType = "Audio";
         break;
-      case KalturaMediaType.video:
+      case VidiunMediaType.video:
         entryType = "Video";
         break;
-      case KalturaMediaType.image:
+      case VidiunMediaType.image:
         entryType = "Image";
         break;
-      case KalturaMediaType.liveStreamFlash:
-      case KalturaMediaType.liveStreamQuicktime:
-      case KalturaMediaType.liveStreamRealMedia:
-      case KalturaMediaType.liveStreamWindowsMedia:
+      case VidiunMediaType.liveStreamFlash:
+      case VidiunMediaType.liveStreamQuicktime:
+      case VidiunMediaType.liveStreamRealMedia:
+      case VidiunMediaType.liveStreamWindowsMedia:
         entryType = "Live";
         break;
       default:

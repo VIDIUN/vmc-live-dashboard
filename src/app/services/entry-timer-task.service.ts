@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs";
-import { KalturaAPIException } from "kaltura-typescript-client";
+import { VidiunAPIException } from "vidiun-typescript-client";
 
 @Injectable()
 export class LiveEntryTimerTaskService {
   constructor() { }
 
-  public runTimer<T>(func: ()=> Observable<T> | null, interval: number, isImmediate = false): Observable<{ error?: string | KalturaAPIException }> {
+  public runTimer<T>(func: ()=> Observable<T> | null, interval: number, isImmediate = false): Observable<{ error?: string | VidiunAPIException }> {
 
     return Observable.create(observer => {
       let active = true;

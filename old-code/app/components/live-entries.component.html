@@ -55,7 +55,7 @@
                 [totalRecords]="totalEntries">
       <template let-entry>
         <div class="ui-g-6 ui-md-3 ">
-          <kmc-live-entry-card (onOpen)="openEntry(entry)" [entry]="entry"></kmc-live-entry-card>
+          <vmc-live-entry-card (onOpen)="openEntry(entry)" [entry]="entry"></vmc-live-entry-card>
         </div>
 
       </template>
@@ -75,7 +75,7 @@
                  expandableRows="true"
                  scrollHeight="auto" >
       <template let-entry>
-        <kmc-live-entry [entry]="entry"></kmc-live-entry>
+        <vmc-live-entry [entry]="entry"></vmc-live-entry>
       </template>
       <p-column expander="true"  styleClass="col-icon" [style]="{'width':'50px'}"></p-column>
       <p-column field="tags" header="Favorite"  [style]="{'width':'80px', 'text-align': 'center'}">
@@ -162,7 +162,7 @@
   </div>
   <div *ngIf="displayEntry">
     <p-dialog  [header]="selectedEntry.name" [(visible)]="displayEntry" [responsive]="true" [width]="1000" [height]="600" [modal]="true" >
-      <kmc-live-entry [entry]="selectedEntry"></kmc-live-entry>
+      <vmc-live-entry [entry]="selectedEntry"></vmc-live-entry>
     </p-dialog>
   </div>
 

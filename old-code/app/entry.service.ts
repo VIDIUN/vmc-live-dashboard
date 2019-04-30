@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { KalturaAPIClient } from './kaltura-api/kaltura-api-client';
-import { EntryServerNodeService } from './kaltura-api/entry-server-node/entry-server-node.service';
-import { LiveStreamService } from './kaltura-api/live-stream/live-stream.service';
-import { LiveAnalyticsService } from './kaltura-api/live-analytics/live-analytics.service';
-import { KalturaMultiRequest } from './kaltura-api/kaltura-multi-request';
+import { VidiunAPIClient } from './vidiun-api/vidiun-api-client';
+import { EntryServerNodeService } from './vidiun-api/entry-server-node/entry-server-node.service';
+import { LiveStreamService } from './vidiun-api/live-stream/live-stream.service';
+import { LiveAnalyticsService } from './vidiun-api/live-analytics/live-analytics.service';
+import { VidiunMultiRequest } from './vidiun-api/vidiun-multi-request';
 import { Observable } from 'rxjs/Observable';
 import {Message} from 'primeng/primeng';
 import {LocalStorage} from 'ng2-webstorage';
@@ -191,7 +191,7 @@ export class LiveEntryService {
     public entryServerNodeRefreshInterval:number = 60;
     private id2entry : Map<string,LiveEntry> = new Map<string,LiveEntry>();
 
-    constructor(private kalturaAPIClient:KalturaAPIClient) {
+    constructor(private vidiunAPIClient:VidiunAPIClient) {
 
         if (this.liveOnly===null) {
             this.liveOnly=false;
@@ -200,18 +200,18 @@ export class LiveEntryService {
             this.favoritesOnly=false;
         }
         this.filter = {
-            "objectType": "KalturaLiveStreamEntryFilter",
+            "objectType": "VidiunLiveStreamEntryFilter",
             "orderBy": "-createdAt"
         };
         this.responseProfile = {
-            "objectType": "KalturaDetachedResponseProfile",
+            "objectType": "VidiunDetachedResponseProfile",
             "type": "1",
             "fields": "id,name,thumbnailUrl,liveStatus,recordStatus,dvrStatus,dvrWindow,tags",
-            "relatedProfiles:0:objectType": "KalturaDetachedResponseProfile",
+            "relatedProfiles:0:objectType": "VidiunDetachedResponseProfile",
             "relatedProfiles:0:type": 1,
             "relatedProfiles:0:fields": "id",
-            "relatedProfiles:0:filter:objectType": "KalturaEntryServerNodeFilter",
-            "relatedProfiles:0:mappings:0:objectType": "KalturaResponseProfileMapping",
+            "relatedProfiles:0:filter:objectType": "VidiunEntryServerNodeFilter",
+            "relatedProfiles:0:mappings:0:objectType": "VidiunResponseProfileMapping",
             "relatedProfiles:0:mappings:0:parentProperty": "id",
             "relatedProfiles:0:mappings:0:filterProperty": "entryIdEqual"
         };
@@ -235,7 +235,7 @@ export class LiveEntryService {
         this.id2entry.clear();
 
         this.entries$ = LiveStreamService.list(this.searchText, this.filter, this.responseProfile,pageSize,pageIndex)
-                    .execute(this.kalturaAPIClient)
+                    .execute(this.vidiunAPIClient)
                     .map(response => {
                         this.totalEntries=response.totalCount;
 
@@ -268,7 +268,7 @@ export class LiveEntryService {
         };
 
 
-        return EntryServerNodeService.list(filter).execute(this.kalturaAPIClient).toPromise()
+        return EntryServerNodeService.list(filter).execute(this.vidiunAPIClient).toPromise()
             .then(results => {
 
 
@@ -307,12 +307,12 @@ export class LiveEntryService {
     saveTag(entry:LiveEntry) {
 
         let liveStreamEntry = {
-            'liveStreamEntry:objectType': 'KalturaLiveStreamEntry',
+            'liveStreamEntry:objectType': 'VidiunLiveStreamEntry',
             'liveStreamEntry:tags': entry.tags
         };
 
         LiveStreamService.update(entry.id, liveStreamEntry)
-            .execute(this.kalturaAPIClient)
+            .execute(this.vidiunAPIClient)
             .toPromise()
             .catch((reason) => console.log('ERROR: filed to update entry tags. ' + reason));
     }
@@ -323,7 +323,7 @@ export class LiveEntryService {
 
 
     private getAnalyticsData() {
-        let multiRequest = new KalturaMultiRequest();
+        let multiRequest = new VidiunMultiRequest();
 
         let entries :LiveEntry[]=[];
 
@@ -343,7 +343,7 @@ export class LiveEntryService {
         });
 
         if (entries.length>0) {
-            multiRequest.execute(this.kalturaAPIClient).toPromise()
+            multiRequest.execute(this.vidiunAPIClient).toPromise()
                 .then(results => {
                     this.handleAnalyticsData(entries, results)
                 })

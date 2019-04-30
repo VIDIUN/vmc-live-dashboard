@@ -1,20 +1,20 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { KalturaEntryServerNodeStatus } from "kaltura-typescript-client/types/KalturaEntryServerNodeStatus";
-import { KalturaViewMode } from "kaltura-typescript-client/types/KalturaViewMode";
+import { VidiunEntryServerNodeStatus } from "vidiun-typescript-client/types/VidiunEntryServerNodeStatus";
+import { VidiunViewMode } from "vidiun-typescript-client/types/VidiunViewMode";
 
 @Pipe({
   name: 'streamStatus'
 })
 export class StreamStatusPipe implements PipeTransform {
 
-  transform(entryServerNodeStatus: KalturaEntryServerNodeStatus, viewMode = KalturaViewMode.allowAll): 'Live' | 'Initializing' | 'Offline' | 'Preview' {
+  transform(entryServerNodeStatus: VidiunEntryServerNodeStatus, viewMode = VidiunViewMode.allowAll): 'Live' | 'Initializing' | 'Offline' | 'Preview' {
     switch (entryServerNodeStatus) {
-      case KalturaEntryServerNodeStatus.authenticated:
-      case KalturaEntryServerNodeStatus.broadcasting:
+      case VidiunEntryServerNodeStatus.authenticated:
+      case VidiunEntryServerNodeStatus.broadcasting:
         return 'Initializing';
-      case KalturaEntryServerNodeStatus.playable:
-        return (viewMode === KalturaViewMode.preview) ? 'Preview' : 'Live';
-      case KalturaEntryServerNodeStatus.stopped:
+      case VidiunEntryServerNodeStatus.playable:
+        return (viewMode === VidiunViewMode.preview) ? 'Preview' : 'Live';
+      case VidiunEntryServerNodeStatus.stopped:
       default:
         return 'Offline'
     }

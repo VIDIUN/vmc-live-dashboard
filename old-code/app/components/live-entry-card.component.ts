@@ -4,7 +4,7 @@ import {LiveEntry} from "../entry.service";
 import {TreeTableModule,TreeNode,SharedModule,ButtonModule} from '../../node_modules/primeng/primeng.d';
 
 @Component({
-    selector: 'kmc-live-entry-card',
+    selector: 'vmc-live-entry-card',
     templateUrl: './app/components/live-entry-card.component.html',
     styleUrls: ['./app/components/live-entry-card.component.css']
 })

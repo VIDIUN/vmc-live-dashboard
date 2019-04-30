@@ -21,7 +21,7 @@ export const environment = {
     "api_calls_delay_on_exception": 10000
   },
   "externalLinks": {
-    "LEARN_MORE": "https://knowledge.kaltura.com/getting-started-kaltura-live"
+    "LEARN_MORE": "https://knowledge.vidiun.com/getting-started-vidiun-live"
   },
   "loadingError": {
     "liveEntryFailed": "Failed to load Live Entry. Please restart application"

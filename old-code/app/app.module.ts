@@ -20,8 +20,8 @@ import { PanelModule, DialogModule, DropdownModule, MessagesModule,SplitButtonMo
 import { HttpModule }    from '@angular/http';
 
 //backend
-import {KalturaAPIConfig} from './kaltura-api/kaltura-api-config';
-import {KalturaAPIClient} from './kaltura-api/kaltura-api-client';
+import {VidiunAPIConfig} from './vidiun-api/vidiun-api-config';
+import {VidiunAPIClient} from './vidiun-api/vidiun-api-client';
 
 
 @NgModule({
@@ -63,8 +63,8 @@ import {KalturaAPIClient} from './kaltura-api/kaltura-api-client';
     ],
   providers:
     [
-      KalturaAPIConfig,
-      KalturaAPIClient
+      VidiunAPIConfig,
+      VidiunAPIClient
     ],
   bootstrap: [ LiveEntriesComponent ]
 })

@@ -1,15 +1,15 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import * as _ from 'lodash';
 import { FlavorObject, NodeStreams } from "../types/live-dashboard.types";
-import { KalturaEntryServerNodeType } from "kaltura-typescript-client/types/KalturaEntryServerNodeType";
+import { VidiunEntryServerNodeType } from "vidiun-typescript-client/types/VidiunEntryServerNodeType";
 
 @Pipe({
   name: 'transcodingInfo'
 })
 export class TranscodingInfoPipe implements PipeTransform {
 
-  transform(allStreams: NodeStreams, arg?: KalturaEntryServerNodeType): string {
-    if (KalturaEntryServerNodeType.livePrimary.equals(arg)) {
+  transform(allStreams: NodeStreams, arg?: VidiunEntryServerNodeType): string {
+    if (VidiunEntryServerNodeType.livePrimary.equals(arg)) {
       return this.appendFormattedStream(allStreams.primary);
     }
     else {

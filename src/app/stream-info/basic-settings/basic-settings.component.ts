@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LiveEntryService } from "../../services/live-entry.service";
-import { KalturaLiveStreamEntry } from "kaltura-typescript-client/types/KalturaLiveStreamEntry";
+import { VidiunLiveStreamEntry } from "vidiun-typescript-client/types/VidiunLiveStreamEntry";
 
 @Component({
   selector: 'basic-settings',
@@ -8,7 +8,7 @@ import { KalturaLiveStreamEntry } from "kaltura-typescript-client/types/KalturaL
   styleUrls: ['basic-settings.component.scss']
 })
 export class BasicSettingsComponent implements OnInit {
-  public _currentEntry: KalturaLiveStreamEntry;
+  public _currentEntry: VidiunLiveStreamEntry;
 
   constructor(private _liveEntryService: LiveEntryService) { }
 

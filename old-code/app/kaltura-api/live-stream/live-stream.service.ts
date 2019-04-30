@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import {KalturaRequest} from "../kaltura-request";
+import {VidiunRequest} from "../vidiun-request";
 
 @Injectable()
 export class LiveStreamService {
@@ -8,11 +8,11 @@ export class LiveStreamService {
   constructor(){
   }
 
-  static list(search: string = '', filter: any = {}, responseProfile: any = {}, pageSize: number = 30, pageIndex: number = 1): KalturaRequest<any> {
+  static list(search: string = '', filter: any = {}, responseProfile: any = {}, pageSize: number = 30, pageIndex: number = 1): VidiunRequest<any> {
 
     const parameters :any = {
       pager: {
-        objectType: "KalturaFilterPager",
+        objectType: "VidiunFilterPager",
         pageSize: pageSize,
         pageIndex: pageIndex
       },
@@ -24,10 +24,10 @@ export class LiveStreamService {
       Object.assign(parameters.filter, {freeText: search});
     }
 
-    return new KalturaRequest<any>('liveStream', 'list', parameters);
+    return new VidiunRequest<any>('liveStream', 'list', parameters);
   }
 
-  static update(entryId: string, liveStreamEntry: any = {}) : KalturaRequest<any> {
+  static update(entryId: string, liveStreamEntry: any = {}) : VidiunRequest<any> {
 
     const parameters :any = {
       entryId: entryId,
@@ -36,7 +36,7 @@ export class LiveStreamService {
     Object.assign(parameters, liveStreamEntry);
 
 
-    return new KalturaRequest<any>('liveStream', 'update', parameters);
+    return new VidiunRequest<any>('liveStream', 'update', parameters);
   }
 
 }

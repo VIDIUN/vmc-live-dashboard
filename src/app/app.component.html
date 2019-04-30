@@ -1,4 +1,4 @@
-<k-area-blocker [showLoader]="_applicationLoading" [message]="_sectionBlockerMessage">
+<v-area-blocker [showLoader]="_applicationLoading" [message]="_sectionBlockerMessage">
   <div class="app-window" *ngIf="_applicationLoaded" >
     <div class="dashboard-window">
       <stream-info class="flexIt"></stream-info>
@@ -8,4 +8,4 @@
       <span class="beta-message">{{ "DASHBOARD.beta_message" | translate: _configuration }}</span>
     </footer>
   </div>
-</k-area-blocker>
+</v-area-blocker>

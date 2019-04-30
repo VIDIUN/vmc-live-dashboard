@@ -1,4 +1,4 @@
-@import '../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/variables.scss';
+@import '../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/variables.scss';
 
 .app-window {
   width: 100%;
@@ -33,7 +33,7 @@
     margin-right: 60px;
 
     .beta-message {
-      color: $kGrayscale2;
+      color: $vGrayscale2;
       font-size: 12px;
       line-height: 15px;
       font-weight: 500;

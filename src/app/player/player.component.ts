@@ -1,11 +1,11 @@
 import { Component, Input, Output, OnInit, OnDestroy, AfterViewInit, EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'k-player',
+    selector: 'v-player',
     templateUrl: './player.component.html',
 	styleUrls: ['./player.component.scss']
 })
-export class KalturaPlayerComponent implements AfterViewInit, OnDestroy {
+export class VidiunPlayerComponent implements AfterViewInit, OnDestroy {
 
 	@Input()
 	width : number|string;
@@ -23,7 +23,7 @@ export class KalturaPlayerComponent implements AfterViewInit, OnDestroy {
 	entryid : string;
 
 	@Input()
-	cdnUrl : string = 'http://cdnapi.kaltura.com';
+	cdnUrl : string = 'http://cdnapi.vidiun.com';
 
 	@Input()
 	flashvars : any = {};
@@ -35,7 +35,7 @@ export class KalturaPlayerComponent implements AfterViewInit, OnDestroy {
 	id : string = "";
 
 	@Output()
-	kalturaPlayerReady = new EventEmitter<any>();
+	vidiunPlayerReady = new EventEmitter<any>();
 
 
 	private kdp: any;
@@ -65,20 +65,20 @@ export class KalturaPlayerComponent implements AfterViewInit, OnDestroy {
 	public Embed():void{
 		// validation
 		if (!this.pid || !this.uiconfid || !this.entryid){
-			console.warn("Kaltura Player::Missing parameters. Please provide pid, uiconfid and entryid.");
+			console.warn("Vidiun Player::Missing parameters. Please provide pid, uiconfid and entryid.");
 		}else {
 			// load player lib if doesn't exist
-			if (document.getElementById("kalturaPlayerLib") === null) {
+			if (document.getElementById("vidiunPlayerLib") === null) {
 				let s = document.createElement('script');
 				s.src = `${this.cdnUrl}/p/${this.pid}/sp/${this.pid}00/embedIframeJs/uiconf_id/${this.uiconfid}/partner_id/${this.pid}`;
-				s.id = "kalturaPlayerLib";
+				s.id = "vidiunPlayerLib";
 				s.async = false;
 				document.head.appendChild(s);
 			}
 			// wait for lib to load if not loaded and then embed player
-			if (!this.kdp){
+			if (!this.vdp){
 				const intervalID = setInterval(() => {
-					if (typeof window['kWidget'] !== "undefined"){
+					if (typeof window['vWidget'] !== "undefined"){
 						clearInterval(intervalID);
 						this.doEmbed();
 					}
@@ -90,23 +90,23 @@ export class KalturaPlayerComponent implements AfterViewInit, OnDestroy {
 	}
 
 	private doEmbed():void{
-		window['kWidget'].embed({
-			"targetId": "kaltura_player_" + this.id,
+		window['vWidget'].embed({
+			"targetId": "vidiun_player_" + this.id,
 			"wid": "_" + this.pid,
 			"uiconf_id": this.uiconfid,
 			"flashvars": this.flashvars,
 			"cache_st": Math.random(),
 			"entry_id": this.entryid,
 			"readyCallback": (playerID) => {
-				this.kdp = document.getElementById(playerID);
-				this.kalturaPlayerReady.emit(this.kdp);
+				this.vdp = document.getElementById(playerID);
+				this.vidiunPlayerReady.emit(this.vdp);
 			}
 		});
 	}
 
 	ngOnDestroy(){
-		if (this.kdp){
-			window['kWidget'].destroy(this.kdp);
+		if (this.vdp){
+			window['vWidget'].destroy(this.vdp);
 		}
 	}
 

@@ -6,23 +6,23 @@ import { KalturaEntryModerationStatus } from "kaltura-ngx-client/api/types/Kaltu
 })
 export class ModerationPipe implements PipeTransform {
 
-  transform(value: KalturaEntryModerationStatus): string {
+  transform(value: VidiunEntryModerationStatus): string {
     let moderationStatus: string = "";
     if (value) {
       switch (value) {
-        case KalturaEntryModerationStatus.approved:
+        case VidiunEntryModerationStatus.approved:
           moderationStatus = "Approved";
           break;
-        case KalturaEntryModerationStatus.autoApproved:
+        case VidiunEntryModerationStatus.autoApproved:
           moderationStatus = "Auto Approved";
           break;
-        case KalturaEntryModerationStatus.flaggedForReview:
+        case VidiunEntryModerationStatus.flaggedForReview:
           moderationStatus = "Flagged";
           break;
-        case KalturaEntryModerationStatus.pendingModeration:
+        case VidiunEntryModerationStatus.pendingModeration:
           moderationStatus = "Pending";
           break;
-        case KalturaEntryModerationStatus.rejected:
+        case VidiunEntryModerationStatus.rejected:
           moderationStatus = "Rejected";
           break;
       }

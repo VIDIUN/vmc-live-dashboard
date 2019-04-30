@@ -67,7 +67,7 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
     this._liveStreamSubscription.unsubscribe();
     this._explicitLiveWaitFlagSubscription.unsubscribe();
     this._dynamicInformationSubscription.unsubscribe();
-    this._kdp.kUnbind('.liveDashboard');
+    this._vdp.vUnbind('.liveDashboard');
   }
 
   private _subscribeToApplicationStatus(): void {
@@ -135,8 +135,8 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
   }
 
   public _onClickGoLive() {
-    this._liveEntry.viewMode = KalturaViewMode.allowAll;
-    this._liveEntry.recordingStatus = KalturaRecordingStatus.active;
+    this._liveEntry.viewMode = VidiunViewMode.allowAll;
+    this._liveEntry.recordingStatus = VidiunRecordingStatus.active;
 
     this._liveEntryService.updateLiveStreamEntryByApi(['viewMode', 'recordingStatus']);
   }
@@ -154,12 +154,12 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
     });
   }
 
-  public _onPlayerReady(kdp: any) {
-    this._kdp = kdp;
-    kdp.kBind( "openFullScreen.liveDashboard", () => {
+  public _onPlayerReady(vdp: any) {
+    this._vdp = vdp;
+    vdp.vBind( "openFullScreen.liveDashboard", () => {
       this._inFullScreen = true;
     });
-    kdp.kBind( "closeFullScreen.liveDashboard", () => {
+    vdp.vBind( "closeFullScreen.liveDashboard", () => {
       this._inFullScreen = false;
     });
   }

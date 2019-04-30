@@ -1,4 +1,4 @@
-@import '../../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/_variables.scss';
+@import '../../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/_variables.scss';
 
 .encoder-settings {
   margin: 0 0 53px 34px;
@@ -7,7 +7,7 @@
 header {
   font-size: 12px;
   margin: 26px 0 44px 0;
-  color: $kGrayscale3;
+  color: $vGrayscale3;
   text-transform: uppercase;
   letter-spacing: 1px;
   .title {
@@ -16,7 +16,7 @@ header {
 
   .rtmp-rtsp {
     float: right;
-    border: 2px solid $kGrayscale3;
+    border: 2px solid $vGrayscale3;
     border-radius: 4px;
     padding: 2px 6px 1px 7px;
     font-size: 14px;
@@ -45,12 +45,12 @@ header {
       height: 20px;
       width: auto;
       margin-left: auto;
-      color: $kTertiary;
+      color: $vTertiary;
       /deep/ .ui-button-text {
         text-decoration: underline;
       }
       &:hover {
-        color: darken($kPrimary, 20%);
+        color: darken($vPrimary, 20%);
       }
     }
 
@@ -60,9 +60,9 @@ header {
 
       border: none;
       height: 34px;
-      background-color: $kGrayscale6;
+      background-color: $vGrayscale6;
       border-radius: 3px;
-      color: $kGrayscale2;
+      color: $vGrayscale2;
     }
   }
 }

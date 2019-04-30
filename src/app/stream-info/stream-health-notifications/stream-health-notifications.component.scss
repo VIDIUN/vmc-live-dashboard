@@ -1,20 +1,20 @@
-@import '../../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/_variables.scss';
+@import '../../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/_variables.scss';
 
 .stream-info-header{
   margin: 0 0 24px 0;
 }
 
 .stream-info-title {
-  color: $kGrayscale1;
+  color: $vGrayscale1;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
 }
 
-.kIconUsers{
+.vIconUsers{
   padding-left: 20px;
   line-height: 24px;
-  color: $kGrayscale3;
+  color: $vGrayscale3;
   font-size: 31px;
 
   &:before {
@@ -23,7 +23,7 @@
 }
 
 .num-of-watchers {
-  color: $kTertiary;
+  color: $vTertiary;
   font-size: 24px;
   line-height: 24px;
   padding-left: 20px;
@@ -31,7 +31,7 @@
 
 .notification-container{
   border-radius: 3px;
-  background-color: $kGrayscale7;
+  background-color: $vGrayscale7;
   padding: 13px 0 13px 13px;
   height: 340px;
   width: 100%;
@@ -68,7 +68,7 @@
   font-size: 47px;
   line-height: 23px;
   padding-left: 2px;
-  color: $kGrayscale2;
+  color: $vGrayscale2;
 }
 
 .small-bullet {
@@ -81,7 +81,7 @@
 }
 
 .row-1 {
-  color: $kGrayscale2;
+  color: $vGrayscale2;
   font-size: 14px;
   line-height: 22px;
   padding-bottom: 4px;
@@ -92,7 +92,7 @@
 }
 
 .row-2 {
-  color: $kGrayscale3;
+  color: $vGrayscale3;
   font-size: 12px;
   line-height: 15px;
 }

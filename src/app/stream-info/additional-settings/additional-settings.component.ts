@@ -14,7 +14,7 @@ import { KalturaLiveStreamEntry } from "kaltura-ngx-client/api/types/KalturaLive
 })
 export class AdditionalSettingsComponent implements OnInit {
   public _conversionProfilesList: SelectItem[];
-  public _currentEntry: KalturaLiveStreamEntry;
+  public _currentEntry: VidiunLiveStreamEntry;
   // TODO: Find a better solution to not use the boolean!
   public _recording: boolean;
   public _previewMode: boolean;
@@ -27,7 +27,7 @@ export class AdditionalSettingsComponent implements OnInit {
     this._liveEntryService.liveStream$.subscribe(response => {
       if (response) {
         this._currentEntry = response;
-        this._recording = (response.recordStatus !== KalturaRecordStatus.disabled);
+        this._recording = (response.recordStatus !== VidiunRecordStatus.disabled);
         // TODO: Add support for Preview-Mode in backend API calls
       }
     });
@@ -43,21 +43,21 @@ export class AdditionalSettingsComponent implements OnInit {
   }
 
   public _onDvrCheckChange(event: any): void {
-    this._currentEntry.dvrStatus = (event) ? KalturaDVRStatus.enabled : KalturaDVRStatus.disabled;
+    this._currentEntry.dvrStatus = (event) ? VidiunDVRStatus.enabled : VidiunDVRStatus.disabled;
   }
 
   public _onRecordingCheckChange(event: any): void {
     if (!event) {
-      this._currentEntry.recordStatus = KalturaRecordStatus.disabled;
+      this._currentEntry.recordStatus = VidiunRecordStatus.disabled;
     }
   }
 
   public _onClickRecordingRadio(event: any): void {
     if (event === 'appendRecording') {
-      this._currentEntry.recordStatus = KalturaRecordStatus.appended;
+      this._currentEntry.recordStatus = VidiunRecordStatus.appended;
     }
     else if (event === 'newEntryPerSession') {
-      this._currentEntry.recordStatus = KalturaRecordStatus.perSession;
+      this._currentEntry.recordStatus = VidiunRecordStatus.perSession;
     }
   }
 }

@@ -1,4 +1,4 @@
-@import '../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/_variables.scss';
+@import '../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/_variables.scss';
 
 .stream-info {
   border-radius: 3px;
@@ -10,7 +10,7 @@
 
   .stream-configuration-box {
     flex:  1 0 100%;
-    color: $kGrayscale3;
+    color: $vGrayscale3;
     font-size: 13px;
     line-height: 16px;
     text-align: center;
@@ -35,8 +35,8 @@
     align-items: center;
     justify-content: center;
 
-    border-top: 1px solid $kGrayscale6;
-    border-bottom: 1px solid $kGrayscale6;
+    border-top: 1px solid $vGrayscale6;
+    border-bottom: 1px solid $vGrayscale6;
     text-align: center;
   }
 
@@ -50,7 +50,7 @@
 
     .main-left {
       flex: 3;
-      border-right: 1px solid $kGrayscale6;
+      border-right: 1px solid $vGrayscale6;
       padding-right: 10px;
 
       .general-settings {
@@ -80,7 +80,7 @@
   footer {
     flex: 1 0 100%;
     padding: 23px 0 17px 0;
-    border-top: 1px solid $kGrayscale6;
+    border-top: 1px solid $vGrayscale6;
     text-align: center;
 
     .saveInfo {

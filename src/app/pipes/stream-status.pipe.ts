@@ -7,14 +7,14 @@ import { KalturaViewMode } from "kaltura-ngx-client/api/types/KalturaViewMode";
 })
 export class StreamStatusPipe implements PipeTransform {
 
-  transform(entryServerNodeStatus: KalturaEntryServerNodeStatus, viewMode = KalturaViewMode.allowAll): 'Live' | 'Initializing' | 'Offline' | 'Preview' {
+  transform(entryServerNodeStatus: VidiunEntryServerNodeStatus, viewMode = VidiunViewMode.allowAll): 'Live' | 'Initializing' | 'Offline' | 'Preview' {
     switch (entryServerNodeStatus) {
-      case KalturaEntryServerNodeStatus.authenticated:
-      case KalturaEntryServerNodeStatus.broadcasting:
+      case VidiunEntryServerNodeStatus.authenticated:
+      case VidiunEntryServerNodeStatus.broadcasting:
         return 'Initializing';
-      case KalturaEntryServerNodeStatus.playable:
-        return (viewMode === KalturaViewMode.preview) ? 'Preview' : 'Live';
-      case KalturaEntryServerNodeStatus.stopped:
+      case VidiunEntryServerNodeStatus.playable:
+        return (viewMode === VidiunViewMode.preview) ? 'Preview' : 'Live';
+      case VidiunEntryServerNodeStatus.stopped:
       default:
         return 'Offline'
     }

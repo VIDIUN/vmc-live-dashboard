@@ -6,7 +6,7 @@ import { KalturaAPIException } from "kaltura-ngx-client";
 export class LiveEntryTimerTaskService {
   constructor() { }
 
-  public runTimer<T>(func: ()=> Observable<T> | null, interval: number, isImmediate = false): Observable<{ error?: string | KalturaAPIException }> {
+  public runTimer<T>(func: ()=> Observable<T> | null, interval: number, isImmediate = false): Observable<{ error?: string | VidiunAPIException }> {
 
     return Observable.create(observer => {
       let active = true;

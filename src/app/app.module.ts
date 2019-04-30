@@ -26,7 +26,7 @@ import { EncoderSettingsComponent } from './stream-info/encoder-settings/encoder
 import { BasicSettingsComponent } from './stream-info/basic-settings/basic-settings.component';
 import { AdditionalSettingsComponent } from './stream-info/additional-settings/additional-settings.component';
 import { StreamConfigurationsComponent } from './components/stream-configurations/stream-configurations.component';
-import { AreaBlockerComponent } from "@kaltura-ng/kaltura-ui/area-blocker";
+import { AreaBlockerComponent } from "@vidiun-ng/vidiun-ui/area-blocker";
 import { StreamHealthNotificationsComponent } from './stream-info/stream-health-notifications/stream-health-notifications.component';
 import { FurtherInformationComponent } from './components/further-information/further-information.component';
 // TODO: Remove!!!
@@ -48,8 +48,8 @@ import { StreamStatusPipe } from './pipes/stream-status.pipe';
 
 // Configuration Services
 import { LiveDashboardConfiguration } from "./services/live-dashboard-configuration.service";
-import { AppLocalization, AppStorage } from "@kaltura-ng/kaltura-common";
-import { KalturaClientModule } from 'kaltura-ngx-client';
+import { AppLocalization, AppStorage } from "@vidiun-ng/vidiun-common";
+import { VidiunClientModule } from 'vidiun-ngx-client';
 
 @NgModule({
   declarations: [
@@ -75,7 +75,7 @@ import { KalturaClientModule } from 'kaltura-ngx-client';
     CodeToSeverityPipe,
     StreamStatusPipe,
     FurtherInformationComponent,
-    KalturaPlayerComponent,
+    VidiunPlayerComponent,
     DefaultDashboardComponent,
     CompactDashboardComponent
   ],
@@ -96,7 +96,7 @@ import { KalturaClientModule } from 'kaltura-ngx-client';
     GrowlModule,
     TooltipModule,
     ConfirmDialogModule,
-    KalturaClientModule.forRoot()
+    VidiunClientModule.forRoot()
   ],
   providers: [
     LiveEntryService,

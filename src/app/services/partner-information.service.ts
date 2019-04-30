@@ -1,43 +1,43 @@
 import { Injectable } from '@angular/core';
-import { KalturaClient } from "kaltura-ngx-client";
+import { VidiunClient } from "vidiun-ngx-client";
 import { Observable } from "rxjs";
 
-import { ConversionProfileListAction } from "kaltura-ngx-client/api/types/ConversionProfileListAction";
-import { KalturaConversionProfileFilter } from "kaltura-ngx-client/api/types/KalturaConversionProfileFilter";
-import { KalturaConversionProfileType } from "kaltura-ngx-client/api/types/KalturaConversionProfileType";
-import { KalturaConversionProfileListResponse } from "kaltura-ngx-client/api/types/KalturaConversionProfileListResponse";
-import { ConversionProfileAssetParamsListAction } from "kaltura-ngx-client/api/types/ConversionProfileAssetParamsListAction";
-import { KalturaConversionProfileAssetParamsFilter } from "kaltura-ngx-client/api/types/KalturaConversionProfileAssetParamsFilter";
-import { KalturaConversionProfileAssetParamsListResponse } from "kaltura-ngx-client/api/types/KalturaConversionProfileAssetParamsListResponse";
-import { UiConfListTemplatesAction } from "kaltura-ngx-client/api/types/UiConfListTemplatesAction";
-import { KalturaUiConfFilter } from "kaltura-ngx-client/api/types/KalturaUiConfFilter";
-import { KalturaUiConfListResponse } from "kaltura-ngx-client/api/types/KalturaUiConfListResponse";
+import { ConversionProfileListAction } from "vidiun-ngx-client/api/types/ConversionProfileListAction";
+import { VidiunConversionProfileFilter } from "vidiun-ngx-client/api/types/VidiunConversionProfileFilter";
+import { VidiunConversionProfileType } from "vidiun-ngx-client/api/types/VidiunConversionProfileType";
+import { VidiunConversionProfileListResponse } from "vidiun-ngx-client/api/types/VidiunConversionProfileListResponse";
+import { ConversionProfileAssetParamsListAction } from "vidiun-ngx-client/api/types/ConversionProfileAssetParamsListAction";
+import { VidiunConversionProfileAssetParamsFilter } from "vidiun-ngx-client/api/types/VidiunConversionProfileAssetParamsFilter";
+import { VidiunConversionProfileAssetParamsListResponse } from "vidiun-ngx-client/api/types/VidiunConversionProfileAssetParamsListResponse";
+import { UiConfListTemplatesAction } from "vidiun-ngx-client/api/types/UiConfListTemplatesAction";
+import { VidiunUiConfFilter } from "vidiun-ngx-client/api/types/VidiunUiConfFilter";
+import { VidiunUiConfListResponse } from "vidiun-ngx-client/api/types/VidiunUiConfListResponse";
 import { environment } from "../../environments/environment";
 
 @Injectable()
 export class PartnerInformationService {
 
-  constructor(private _kalturaClient: KalturaClient) { }
+  constructor(private _vidiunClient: VidiunClient) { }
 
-  public getConversionProfiles(): Observable<KalturaConversionProfileListResponse> {
-    return this._kalturaClient.request(new ConversionProfileListAction({
-      filter: new KalturaConversionProfileFilter({
-        typeEqual: KalturaConversionProfileType.liveStream
+  public getConversionProfiles(): Observable<VidiunConversionProfileListResponse> {
+    return this._vidiunClient.request(new ConversionProfileListAction({
+      filter: new VidiunConversionProfileFilter({
+        typeEqual: VidiunConversionProfileType.liveStream
       })
     }));
   }
 
-  public getConversionProfileFlavors(id: number): Observable<KalturaConversionProfileAssetParamsListResponse> {
-    return this._kalturaClient.request(new ConversionProfileAssetParamsListAction({
-      filter: new KalturaConversionProfileAssetParamsFilter({
+  public getConversionProfileFlavors(id: number): Observable<VidiunConversionProfileAssetParamsListResponse> {
+    return this._vidiunClient.request(new ConversionProfileAssetParamsListAction({
+      filter: new VidiunConversionProfileAssetParamsFilter({
         conversionProfileIdEqual: id
       })
     }));
   }
 
-  public getUiconfIdByTag(): Observable<KalturaUiConfListResponse> {
-    return this._kalturaClient.request(new UiConfListTemplatesAction({
-      filter: new KalturaUiConfFilter({
+  public getUiconfIdByTag(): Observable<VidiunUiConfListResponse> {
+    return this._vidiunClient.request(new UiConfListTemplatesAction({
+      filter: new VidiunUiConfFilter({
         tagsMultiLikeOr: environment.bootstrap.uiConf_id_tag
       })
     }));

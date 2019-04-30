@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LiveEntryService } from "../../services/live-entry.service";
-import { KalturaLiveStreamEntry } from "kaltura-ngx-client/api/types/KalturaLiveStreamEntry";
+import { VidiunLiveStreamEntry } from "vidiun-ngx-client/api/types/VidiunLiveStreamEntry";
 
 @Component({
   selector: 'basic-settings',

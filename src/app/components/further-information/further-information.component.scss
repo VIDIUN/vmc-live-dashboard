@@ -1,4 +1,4 @@
-@import '../../../../node_modules/@kaltura-ng/mc-theme/themes/default/scss/variables';
+@import '../../../../node_modules/@vidiun-ng/mc-theme/themes/default/scss/variables';
 
 .component-text {
   color: $vGrayscale2;
@@ -15,12 +15,12 @@
 .learn-more-link {
   margin-top: 5px;
   text-decoration: underline;
-  color: $kTertiary;
+  color: $vTertiary;
   span {
     cursor: pointer;
 
     &:hover {
-      color: darken($kTertiary, 20%);
+      color: darken($vTertiary, 20%);
     }
   }
 }
@@ -38,15 +38,15 @@
 }
 
 .arrow-enabled {
-  color: $kGrayscale1;
+  color: $vGrayscale1;
   cursor: pointer;
 }
 
 .arrow-enabled-reverted {
-  color: $kGrayscale5;
+  color: $vGrayscale5;
   cursor: pointer;
 }
 
 .arrow-disabled-reverted {
-  color: $kGrayscale1;
+  color: $vGrayscale1;
 }

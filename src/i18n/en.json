@@ -159,11 +159,11 @@
     },
     "114": {
       "message-log": "Live streaming is disabled on your account",
-      "message-text-box": "Live streaming is disabled on your account. please contact Kaltura for more details"
+      "message-text-box": "Live streaming is disabled on your account. please contact Vidiun for more details"
     },
     "115": {
       "message-log": "Live stream quota has been exceeded",
-      "message-text-box": "Live stream quota has been exceeded. please contact Kaltura for more details."
+      "message-text-box": "Live stream quota has been exceeded. please contact Vidiun for more details."
     },
     "116": {
       "message-log": "Frame rate is fluctuating on flavor ({{Flavor}}). Last: {{lastFrameRate}}, Average: {{meanFrameRate}}",

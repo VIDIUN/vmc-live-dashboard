@@ -1,4 +1,4 @@
-import { KalturaEntryServerNodeType } from "kaltura-ngx-client/api/types/KalturaEntryServerNodeType";
+import { VidiunEntryServerNodeType } from "vidiun-ngx-client/api/types/VidiunEntryServerNodeType";
 
 export enum ApplicationMode {
   Default,
@@ -153,7 +153,7 @@ export interface FlavorParams {
 export interface PlayerConfig {
   partnerId?: number,
   entryId?: string,
-  ks?: string,
+  vs?: string,
   uiConfId?: number,
   serviceUrl?: string
   flashVars?: Object

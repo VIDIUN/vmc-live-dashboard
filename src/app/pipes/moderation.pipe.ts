@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { KalturaEntryModerationStatus } from "kaltura-ngx-client/api/types/KalturaEntryModerationStatus";
+import { VidiunEntryModerationStatus } from "vidiun-ngx-client/api/types/VidiunEntryModerationStatus";
 
 @Pipe({
   name: 'moderation'

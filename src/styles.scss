@@ -9,7 +9,7 @@ $mc-theme-font-path : '../node_modules/@vidiun-ng/mc-theme/themes/default/fonts'
   font-size: 15px;
 }
 
-k-area-blocker {
+v-area-blocker {
    .loading-backdrop .spinner-container {
       position: absolute;
       top: 50%;
@@ -30,7 +30,7 @@ k-area-blocker {
 }
 
 .bullet-grey {
-  color: $kGrayscale2;
+  color: $vGrayscale2;
 }
 
 .bullet-green {
@@ -59,7 +59,7 @@ k-area-blocker {
 }
 
 ::-webkit-scrollbar {
-  background-color: $kGrayscale7;
+  background-color: $vGrayscale7;
   width: 0.75em;
 }
 
@@ -69,5 +69,5 @@ k-area-blocker {
 }
 
 ::-webkit-scrollbar-corner {
-  background-color: $kGrayscale7;
+  background-color: $vGrayscale7;
 }

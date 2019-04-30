@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { KalturaEntryServerNodeStatus } from "kaltura-ngx-client/api/types/KalturaEntryServerNodeStatus";
-import { KalturaViewMode } from "kaltura-ngx-client/api/types/KalturaViewMode";
+import { VidiunEntryServerNodeStatus } from "vidiun-ngx-client/api/types/VidiunEntryServerNodeStatus";
+import { VidiunViewMode } from "vidiun-ngx-client/api/types/VidiunViewMode";
 
 @Pipe({
   name: 'streamStatus'

@@ -3,9 +3,9 @@ import { SelectItem } from 'primeng/primeng';
 import { LiveEntryService } from "../../services/live-entry.service";
 import { PartnerInformationService } from "../../services/partner-information.service";
 //types
-import { KalturaDVRStatus } from "kaltura-ngx-client/api/types/KalturaDVRStatus";
-import { KalturaRecordStatus } from "kaltura-ngx-client/api/types/KalturaRecordStatus";
-import { KalturaLiveStreamEntry } from "kaltura-ngx-client/api/types/KalturaLiveStreamEntry";
+import { VidiunDVRStatus } from "vidiun-ngx-client/api/types/VidiunDVRStatus";
+import { VidiunRecordStatus } from "vidiun-ngx-client/api/types/VidiunRecordStatus";
+import { VidiunLiveStreamEntry } from "vidiun-ngx-client/api/types/VidiunLiveStreamEntry";
 
 @Component({
   selector: 'additional-settings',

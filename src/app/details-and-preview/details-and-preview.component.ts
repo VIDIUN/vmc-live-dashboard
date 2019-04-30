@@ -3,12 +3,12 @@ import { LiveEntryService } from "../services/live-entry.service";
 import { LiveDashboardConfiguration } from "../services/live-dashboard-configuration.service";
 import { LiveEntryDynamicStreamInfo, LoadingStatus, PlayerConfig } from "../types/live-dashboard.types";
 import { ISubscription } from "rxjs/Subscription";
-import { KalturaViewMode } from "kaltura-ngx-client/api/types/KalturaViewMode";
-import { KalturaLiveStreamEntry } from "kaltura-ngx-client/api/types/KalturaLiveStreamEntry";
-import { KalturaRecordingStatus } from "kaltura-ngx-client/api/types/KalturaRecordingStatus";
+import { VidiunViewMode } from "vidiun-ngx-client/api/types/VidiunViewMode";
+import { VidiunLiveStreamEntry } from "vidiun-ngx-client/api/types/VidiunLiveStreamEntry";
+import { VidiunRecordingStatus } from "vidiun-ngx-client/api/types/VidiunRecordingStatus";
 import { ConfirmationService } from "primeng/primeng";
-import { AppLocalization } from "@kaltura-ng/kaltura-common";
-import { KalturaNullableBoolean } from "kaltura-ngx-client/api/types/KalturaNullableBoolean";
+import { AppLocalization } from "@vidiun-ng/vidiun-common";
+import { VidiunNullableBoolean } from "vidiun-ngx-client/api/types/VidiunNullableBoolean";
 
 interface ExplicitLiveObject {
   enabled?: boolean,
@@ -33,11 +33,11 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
   };
   private _tempExplicitLiveInformation: ExplicitLiveObject = {};
   public  _explicitLiveInformation: ExplicitLiveObject;
-  public  _liveEntry: KalturaLiveStreamEntry;
+  public  _liveEntry: VidiunLiveStreamEntry;
   public  _explicitLiveWaitFlag = false;
   public  _player: { configuration: PlayerConfig, visible: boolean };
   public  _inFullScreen = false;
-  private _kdp: any;
+  private _vdp: any;
 
   @Input() compactMode = false;
 
@@ -87,22 +87,22 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
 
         this._player.configuration.partnerId = response.partnerId;
         this._player.configuration.entryId = response.id;
-        this._player.configuration.ks = this._liveDashboardConfiguration.ks;
+        this._player.configuration.vs = this._liveDashboardConfiguration.vs;
         this._player.configuration.uiConfId = this._liveDashboardConfiguration.player.uiConfId;
         this._player.configuration.serviceUrl = this._liveDashboardConfiguration.service_url;
         this._player.configuration.flashVars = {
           autoPlay: this._player.visible,
-          SkipKSOnIsLiveRequest: false,
-          ks: this._player.configuration.ks
+          SkipVSOnIsLiveRequest: false,
+          vs: this._player.configuration.vs
         };
 
         if (typeof response.explicitLive === 'boolean') {
           this._tempExplicitLiveInformation.enabled = <boolean>response.explicitLive;
         }
         else {
-          this._tempExplicitLiveInformation.enabled = response.explicitLive === KalturaNullableBoolean.trueValue;
+          this._tempExplicitLiveInformation.enabled = response.explicitLive === VidiunNullableBoolean.trueValue;
         }
-        this._tempExplicitLiveInformation.previewMode = response.viewMode === KalturaViewMode.preview;
+        this._tempExplicitLiveInformation.previewMode = response.viewMode === VidiunViewMode.preview;
         if (!this._explicitLiveInformation) {
           this._initializeExplicitLive();
         }
@@ -146,8 +146,8 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
       message: this._appLocalization.get('DETAILS_AND_PREVIEW.explicit_live.end_live_alert.message'),
       header: this._appLocalization.get('DETAILS_AND_PREVIEW.explicit_live.end_live_alert.header'),
       accept: () => {
-        this._liveEntry.viewMode = KalturaViewMode.preview;
-        this._liveEntry.recordingStatus = KalturaRecordingStatus.stopped;
+        this._liveEntry.viewMode = VidiunViewMode.preview;
+        this._liveEntry.recordingStatus = VidiunRecordingStatus.stopped;
 
         this._liveEntryService.updateLiveStreamEntryByApi(['viewMode', 'recordingStatus']);
       },
@@ -177,17 +177,17 @@ export class DetailAndPreviewComponent implements OnInit, OnDestroy {
         break;
       case 'playerAction':
         if (message.content === 'play') {
-          if (this._kdp) {
-            this._kdp.sendNotification("doPlay");
+          if (this._vdp) {
+            this._vdp.sendNotification("doPlay");
             // When player resumes playing push seek bar to live mode
-            this._kdp.sendNotification("backToLive");
+            this._vdp.sendNotification("backToLive");
           }
           this._player.visible = true;
         }
         else if (message.content === 'pause') {
           this._player.visible = false;
-          if (this._kdp) {
-            this._kdp.sendNotification("doPause");
+          if (this._vdp) {
+            this._vdp.sendNotification("doPause");
           }
         }
         break;
